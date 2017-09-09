@@ -1,0 +1,24 @@
+Tournament App Basic-
+
+Add a set of players
+Randomly generate groupings of two for first round
+Calculate how many rounds needed to get to a winner and represent them.
+Display matchups
+Take score inputs
+Progress winning players to future rounds
+Assume max 16 players.
+
+
+extras -
+Display scores
+player stats? e.g. point win percentage
+if uneven number of players, be able to select a bi for one player to round 2.
+
+
+
+
+Database columns
+
+id, playername, round 1 win, round 2 win, round 3 win, round 4 win, total points won , total points lost.
+
+
