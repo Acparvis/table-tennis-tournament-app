@@ -1,11 +1,17 @@
 import React from "react";
-import Player from "./player_input";
 
-export default ({ tasks, onClick, onChange }) => (
+
+export default ({ player, onClick, onChange }) => (
 	<div>
-		{ tasks.map(( player, i ) => ( 
-			<Player>
-			</Player>
-		)) }	
+		
+		<ul>
+			{ player.map(( player, i ) => ( 
+				<li key={ i } >
+					{ player.get("value") }
+				</li>
+			)) }	
+		
+		</ul>
+		
 	</div>
 );

@@ -3,24 +3,26 @@ import { connect } from "react-redux";
 
 import { 
 	updateEdit,
+	updateList,
 } from "../data/actions/state";
 
-import Player from "../components/player_input";
+import PlayerInput from "../components/player_input";
 
 
 
 const mapStateToProps = state => {
-	let input = state.get("value");
+	let name = state.get("value");
 	
-		return {
-			value: input
-		}
+	return {
+		value: name
+	}
 };
 
 
 const mapDispatchToProps = dispatch => ({
 	textChange: (value) => dispatch(updateEdit(value)),
+	playerSubmit: (value) => dispatch(updateList(value))
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerInput);

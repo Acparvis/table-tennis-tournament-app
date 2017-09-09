@@ -5,4 +5,11 @@ export const updateEdit = (value) => ({
 	value
 });
 
+export const UPDATE_LIST = Symbol("UPDATE_LIST");
+
+export const updateList = (value) => ({
+	type: UPDATE_LIST,
+	value
+});
+
 

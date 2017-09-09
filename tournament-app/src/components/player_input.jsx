@@ -1,10 +1,10 @@
 import React from "react";
 
-export default ({ textChange, value}) => (
+export default ({ textChange, value, player, playerSubmit}) => (
 	<div>
         <input onChange={ (e) => textChange(e.target.value) } />
-		<p>{value}</p>
-		<button type="submit">Enter</button>
+		<button onClick={ () => playerSubmit(value) } >Enter</button>
+		<p>{ value }</p>
     </div>
 );
 
