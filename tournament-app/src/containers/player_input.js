@@ -1,9 +1,13 @@
 import { connect } from "react-redux";
+import { Map } from 'immutable';
 
 
-import { 
+
+
+import {
 	updateEdit,
 	updateList,
+	updateId,
 } from "../data/actions/state";
 
 import PlayerInput from "../components/player_input";
@@ -12,16 +16,19 @@ import PlayerInput from "../components/player_input";
 
 const mapStateToProps = state => {
 	let name = state.get("value");
-	
+	let currentId = state.get("listsize");
+
 	return {
-		value: name
+		value: name,
+		currentId: currentId
 	}
 };
 
 
 const mapDispatchToProps = dispatch => ({
 	textChange: (value) => dispatch(updateEdit(value)),
-	playerSubmit: (value) => dispatch(updateList(value))
+	playerSubmit: (value, index) => dispatch(updateList(Map({id: index + 1, value: value}))),
+	increaseId: (value) => dispatch(updateId(value + 1))
 });
 
 

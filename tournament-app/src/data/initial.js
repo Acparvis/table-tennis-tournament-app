@@ -15,7 +15,6 @@ export default Map({
 	        id: 3,
 	        value: "Bob",
     	})
-    	
-])
-
+	]),
+	listsize: 3
 });
