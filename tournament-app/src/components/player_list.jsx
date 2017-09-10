@@ -2,12 +2,17 @@ import React from "react";
 import { fromJS } from "immutable";
 
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber }) => (
+// identify the corresponding list item
+// use key to povide the index number
+// fire a function that removes that specific index from the List.
+
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
 				<li key={ i } >
 					{ player.get("value") }
+					<button> Delete </button>
 				</li>
 			)) }
 
@@ -19,7 +24,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 		    a = a.slice();
 		    while (--i) t = a[i], a[i] = a[j = ~~(Math.random() * (i+1))], a[j] = t;
 		    return a;
-			}
+		} // ~~ is a new operator that is shorthand for Math.floor
 
 			//@todo move this fuction logic to reducer
 			// this converts the object to an array.

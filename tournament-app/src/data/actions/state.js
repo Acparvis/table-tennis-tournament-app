@@ -47,3 +47,10 @@ export const resetValue = (value) => ({
 	type: RESET_VALUE,
 	value,
 });
+
+export const PLAYER_DELETE = Symbol("PLAYER_DELETE");
+
+export const playerDelete = (value) => ({
+	type: PLAYER_DELETE,
+	value,
+});
