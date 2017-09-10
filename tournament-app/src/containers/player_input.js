@@ -26,7 +26,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 	textChange: (value) => dispatch(updateEdit(value)),
 	playerSubmit: (value, index) => dispatch(updateList(index, value)),
-	increaseId: (value) => dispatch(updateId(value + 1))
+	increaseId: (value) => dispatch(updateId(value))
 });
 
 

@@ -21,7 +21,7 @@ const updateList = (state, { index, value }) => state.update('players', p => p.p
 
 
 // Updates the listsize state, so we have a total number of players when we want to start the tournament.
-const updateId = ( state, { value }) => state.set("listsize", value);
+const updateId = ( state, { value }) => state.set("listsize", value + 1);
 
 
 

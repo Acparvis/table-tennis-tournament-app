@@ -13,6 +13,7 @@ import state from "./data/reducers";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(state, composeEnhancers(applyMiddleware()));
 
+
 ReactDOM.render(
     <Provider store={ store }>
         <Router history={ history }>
