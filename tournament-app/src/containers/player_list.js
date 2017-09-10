@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 
 import {
-	updateEdit,
+	updateText,
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => ({
-	textChange: (value) => dispatch(updateEdit(value)),
+	textChange: (value) => dispatch(updateText(value)),
 });
 
 

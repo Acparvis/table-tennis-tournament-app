@@ -1,7 +1,7 @@
-export const UPDATE_EDIT = Symbol("UPDATE_EDIT");
+export const UPDATE_TEXT = Symbol("UPDATE_TEXT");
 
-export const updateEdit = (value) => ({
-	type: UPDATE_EDIT,
+export const updateText = (value) => ({
+	type: UPDATE_TEXT,
 	value
 });
 

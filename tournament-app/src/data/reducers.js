@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 
 
 import {
-    UPDATE_EDIT,
+    UPDATE_TEXT,
     UPDATE_LIST,
     UPDATE_ID
 } from "./actions/state"
@@ -12,7 +12,7 @@ import {
 // state functions
 
 // Updates the value state with whatever is in the input box.
-const updateEdit = (state, { value }) => state.set("value", value);
+const updateText = (state, { value }) => state.set("value", value);
 
 
 // @todo Work out why this function misbehaves when it is split across multiple lines. If possible try to rectify it as it is difficult to read at the moment.
@@ -28,7 +28,7 @@ const updateId = ( state, { value }) => state.set("listsize", value + 1);
 // Reducer switch statement.
 export default (state = initial, action) => {
     switch (action.type) {
-        case UPDATE_EDIT:  return updateEdit(state, action);
+        case UPDATE_TEXT:  return updateText(state, action);
         case UPDATE_LIST: return updateList(state, action);
         case UPDATE_ID: return updateId(state, action);
         default: return state;
