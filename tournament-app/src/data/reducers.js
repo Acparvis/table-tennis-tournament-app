@@ -6,7 +6,8 @@ import { Map } from 'immutable';
 import {
     UPDATE_TEXT,
     UPDATE_LIST,
-    UPDATE_ID
+    UPDATE_ID,
+    UPDATE_CONTESTANTS,
 } from "./actions/state"
 
 // state functions
@@ -23,6 +24,8 @@ const updateList = (state, { index, value }) => state.update('players', p => p.p
 // Updates the listsize state, so we have a total number of players when we want to start the tournament.
 const updateId = ( state, { value }) => state.set("listsize", value + 1);
 
+const updateContestants = ( state, { value }) => state.set("contestants", value);
+
 
 
 // Reducer switch statement.
@@ -31,6 +34,7 @@ export default (state = initial, action) => {
         case UPDATE_TEXT:  return updateText(state, action);
         case UPDATE_LIST: return updateList(state, action);
         case UPDATE_ID: return updateId(state, action);
+        case UPDATE_CONTESTANTS: return updateContestants(state, action);
         default: return state;
     }
 };

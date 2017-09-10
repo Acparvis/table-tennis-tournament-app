@@ -19,3 +19,10 @@ export const updateId = (value) => ({
 	type: UPDATE_ID,
 	value,
 });
+
+export const UPDATE_CONTESTANTS = Symbol("UPDATE_CONTESTANTS");
+
+export const updateContestants = (value) => ({
+	type: UPDATE_CONTESTANTS,
+	value,
+});
