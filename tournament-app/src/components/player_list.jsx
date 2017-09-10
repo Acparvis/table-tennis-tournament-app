@@ -1,5 +1,5 @@
 import React from "react";
-
+import { List } from 'immutable';
 
 export default ({ player, onClick, onChange }) => (
 	<div>
@@ -11,6 +11,6 @@ export default ({ player, onClick, onChange }) => (
 			)) }
 
 		</ul>
-		<button onClick={ () => { console.log("tournament start!") } } >Start Tournament!!!</button>
+		<button onClick={ () => { console.log(player.toList()) } } >Start Tournament!!!</button>
 	</div>
 );
