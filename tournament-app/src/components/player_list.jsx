@@ -1,7 +1,7 @@
 import React from "react";
-import { List } from 'immutable';
 
-export default ({ player, onClick, onChange }) => (
+
+export default ({ player, onClick, onChange, makeTree }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
@@ -11,6 +11,12 @@ export default ({ player, onClick, onChange }) => (
 			)) }
 
 		</ul>
-		<button onClick={ () => { console.log(player.toList()) } } >Start Tournament!!!</button>
+		<button onClick={ () => {
+			let arr = player.toList();
+
+			//call a function here that will trigger the player tree to be generated.
+			//makeTree(arr.size);
+			console.log("player array size: ", arr.size);
+		} } >Start Tournament!!!</button>
 	</div>
 );
