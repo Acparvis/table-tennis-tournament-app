@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import {
 	updateContestants,
 	defineRounds,
+	firstRoundMatches,
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
@@ -25,6 +26,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 	createMatchup: (value) => dispatch(updateContestants(value)),
 	makeTree: (value) => dispatch(defineRounds(value)),
+	matchNumber: (value) => dispatch(firstRoundMatches(value)),
 });
 
 

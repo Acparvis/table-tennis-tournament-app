@@ -33,3 +33,10 @@ export const defineRounds = (value) => ({
 	type: DEFINE_ROUNDS,
 	value,
 });
+
+export const FIRST_ROUND_MATCHES = Symbol("FIRST_ROUND_MATCHES");
+
+export const firstRoundMatches = (value) => ({
+	type: FIRST_ROUND_MATCHES,
+	value,
+});

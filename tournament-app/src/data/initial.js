@@ -7,5 +7,7 @@ export default Map({
 	players: List([]),
 	listsize: 0,
 	numberofrounds: 0,
+	firstroundmatches: 0,
 	contestants: List([]),
+	matches: 0,
 });
