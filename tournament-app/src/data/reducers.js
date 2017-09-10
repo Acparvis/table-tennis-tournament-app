@@ -7,7 +7,8 @@ import {
     UPDATE_ID,
     UPDATE_CONTESTANTS,
     DEFINE_ROUNDS,
-    FIRST_ROUND_MATCHES
+    FIRST_ROUND_MATCHES,
+    RESET_VALUE
 } from "./actions/state"
 
 // state functions
@@ -42,6 +43,8 @@ const firstRoundMatches = (state, { value }) => {
                 return state.set("firstroundmatches", Math.ceil(value));
             };
 
+const resetValue = (state, { value } ) => state.set("value", value);
+
 // Reducer switch statement.
 export default (state = initial, action) => {
     switch (action.type) {
@@ -51,6 +54,7 @@ export default (state = initial, action) => {
         case UPDATE_CONTESTANTS: return updateContestants(state, action);
         case DEFINE_ROUNDS:  return defineRounds(state, action);
         case FIRST_ROUND_MATCHES: return firstRoundMatches(state, action);
+        case RESET_VALUE: return resetValue(state, action);
         default: return state;
     }
 };

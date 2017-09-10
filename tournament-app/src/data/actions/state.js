@@ -40,3 +40,10 @@ export const firstRoundMatches = (value) => ({
 	type: FIRST_ROUND_MATCHES,
 	value,
 });
+
+export const RESET_VALUE = Symbol("RESET_VALUE");
+
+export const resetValue = (value) => ({
+	type: RESET_VALUE,
+	value,
+});
