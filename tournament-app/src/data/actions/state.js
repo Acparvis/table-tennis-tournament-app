@@ -26,3 +26,10 @@ export const updateContestants = (value) => ({
 	type: UPDATE_CONTESTANTS,
 	value,
 });
+
+export const DEFINE_ROUNDS = Symbol("DEFINE_ROUNDS");
+
+export const defineRounds = (value) => ({
+	type: DEFINE_ROUNDS,
+	value,
+});

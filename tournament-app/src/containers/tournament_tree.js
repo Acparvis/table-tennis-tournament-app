@@ -11,10 +11,12 @@ import TournamentTree from "../components/tournament_tree";
 
 const mapStateToProps = state => {
 	let contestantList = state.get("contestants");
+	let roundNumber = state.get("numberofrounds");
 
 
 	return {
 		player: contestantList,
+		numberofrounds: roundNumber,
 	}
 
 };

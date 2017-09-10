@@ -32,7 +32,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup }) => (
 			//call a function here that will create a new List of Maps called competitors.
 			createMatchup(arr);
 			//call a function here that will trigger the player tree to be generated.
-			//makeTree(arr.size);
+			makeTree(arr.size);
 			console.log("array: ", arr);
 		} } >Start Tournament!!!</button>
 	</div>

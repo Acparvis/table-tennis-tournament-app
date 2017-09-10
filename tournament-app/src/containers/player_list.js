@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import {
 	updateContestants,
+	defineRounds,
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
@@ -23,6 +24,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 	createMatchup: (value) => dispatch(updateContestants(value)),
+	makeTree: (value) => dispatch(defineRounds(value)),
 });
 
 

@@ -1,9 +1,10 @@
 import React from "react";
 
 
-export default ({ player }) => (
+export default ({ player, numberofrounds }) => (
 	<div>
 		<h1>Tournament Tree</h1>
+		<p>Number of Rounds { numberofrounds }</p>
 		<ul>
 			{
 				player.map(( player, i ) => (
