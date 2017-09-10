@@ -11,5 +11,6 @@ export default ({ player, onClick, onChange }) => (
 			)) }
 
 		</ul>
+		<button onClick={ () => { console.log("tournament start!") } } >Start Tournament!!!</button>
 	</div>
 );

@@ -1,6 +1,4 @@
 import { connect } from "react-redux";
-import { Map } from 'immutable';
-
 
 import {
 	updateText,
