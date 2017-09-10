@@ -7,8 +7,9 @@ export const updateEdit = (value) => ({
 
 export const UPDATE_LIST = Symbol("UPDATE_LIST");
 
-export const updateList = (value) => ({
+export const updateList = (index, value) => ({
 	type: UPDATE_LIST,
+	index,
 	value,
 });
 

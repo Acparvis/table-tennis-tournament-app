@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 // @todo move the map to be in the reducer, currently the value in the action creator is the map object. This means i will also have to pass two arguments to the action creator and assemble the map in the reducer.
 const mapDispatchToProps = dispatch => ({
 	textChange: (value) => dispatch(updateEdit(value)),
-	playerSubmit: (value, index) => dispatch(updateList(Map({id: index + 1, value: value}))),
+	playerSubmit: (value, index) => dispatch(updateList(index, value)),
 	increaseId: (value) => dispatch(updateId(value + 1))
 });
 
