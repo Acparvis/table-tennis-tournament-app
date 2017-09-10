@@ -9,7 +9,7 @@ import {
     DEFINE_ROUNDS,
     FIRST_ROUND_MATCHES,
     RESET_VALUE,
-    PLAYER_DELETE
+    PLAYER_DELETE,
 } from "./actions/state"
 
 // state functions
@@ -25,7 +25,6 @@ const updateList = (state, { index, value }) => state.update('players', p => p.p
 
 // Updates the listsize state, so we have a total number of players when we want to start the tournament.
 const updateId = ( state, { value }) => state.set("listsize", value + 1);
-
 
 // Populates the contestants list with all the players in a randomised order.
 const updateContestants = ( state, { value }) => state.set("contestants", value);
@@ -47,7 +46,11 @@ const firstRoundMatches = (state, { value }) => {
 // resets the value in the state and input box.
 const resetValue = (state, { value } ) => state.set("value", value);
 
-// const playerDelete = (state, { value } ) => state.update('players', p => p.filter(element => element.id !== value));
+
+//removes the player by index using immutable delete function.
+const playerDelete = (state, { value } ) => state.update('players', p => p.delete(value));
+
+
 
 // Reducer switch statement.
 export default (state = initial, action) => {
@@ -59,7 +62,7 @@ export default (state = initial, action) => {
         case DEFINE_ROUNDS:  return defineRounds(state, action);
         case FIRST_ROUND_MATCHES: return firstRoundMatches(state, action);
         case RESET_VALUE: return resetValue(state, action);
-        // case PLAYER_DELETE: return playerDelete(state, action);
+        case PLAYER_DELETE: return playerDelete(state, action);
         default: return state;
     }
 };

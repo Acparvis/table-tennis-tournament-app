@@ -6,13 +6,16 @@ import { fromJS } from "immutable";
 // use key to povide the index number
 // fire a function that removes that specific index from the List.
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer }) => (
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
 				<li key={ i } >
 					{ player.get("value") }
-					<button> Delete </button>
+					<button onClick={ () => {
+								removePlayer(i);
+							} }>
+							Delete </button>
 				</li>
 			)) }
 

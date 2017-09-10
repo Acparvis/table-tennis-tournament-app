@@ -5,6 +5,7 @@ import {
 	updateList,
 	updateId,
 	resetValue,
+	decrementListSize,
 } from "../data/actions/state";
 
 import PlayerInput from "../components/player_input";
@@ -14,6 +15,7 @@ import PlayerInput from "../components/player_input";
 const mapStateToProps = state => {
 	let name = state.get("value");
 	let currentId = state.get("listsize");
+
 
 	return {
 		value: name,
@@ -26,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
 	textChange: (value) => dispatch(updateText(value)),
 	playerSubmit: (value, index) => dispatch(updateList(index, value)),
 	increaseId: (value) => dispatch(updateId(value)),
-	clearInput: (value) => dispatch(resetValue(value))
+	clearInput: (value) => dispatch(resetValue(value)),
 });
 
 
