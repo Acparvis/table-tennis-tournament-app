@@ -7,7 +7,7 @@ export default ({ player }) => (
 		<ul>
 			{
 				player.map(( player, i ) => (
-				//This loop iterates over each palyer in the list and creates a list item with the value.
+				//This loop iterates over each player in the list and creates a list item with the value.
 				<li key={ i } >
 					{ player.get(["players"], player.get('value')) }
 				</li>
