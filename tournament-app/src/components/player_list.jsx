@@ -12,7 +12,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			{ player.map(( player, i ) => (
 				<li key={ i } >
 					{ player.get("value") }
-					<button onClick={ () => {
+					<button  onClick={ () => {
 								removePlayer(i);
 							} }>
 							Delete </button>
