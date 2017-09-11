@@ -51,6 +51,8 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				arr = fromJS(arr);
 				//Call a function that will clear the competitors list.
 				clearCompetitors(arr);
+				matchNumber(arr.size);
+				makeTree(arr.size);
 			}
 			console.log("array: ", arr.size);
 		} } >Start Tournament!!!</button>

@@ -9,7 +9,7 @@ export default ({ player, numberofrounds, numberofcontestants, firstroundmatches
 		<p>Number of matches in First Round { firstroundmatches }</p>
 
 
-		<ul>
+		<ul>Contestants:
 			{
 				player.map(( player, i ) => (
 				//This loop iterates over each player in the list and creates a list item with the value.
