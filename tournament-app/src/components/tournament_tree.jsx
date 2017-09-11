@@ -12,7 +12,7 @@ export default ({ contestants, numberofrounds, numberofcontestants, firstroundma
 
 		<p>Contestants:</p>
 
-			{
+			{/* {
 				console.log("contestants: ", contestants)}{
 				//reducer takes the contestants and splits them into arrays of two
 				contestants = contestants.reduce(function(result, value, index, array) {
@@ -21,15 +21,17 @@ export default ({ contestants, numberofrounds, numberofcontestants, firstroundma
 					return result;
 				}, [])
 
-			}
+			} */}
 			<ul>
-{		console.log(contestants)
+{
 				//This loop iterates over each player in the list and creates a list item with the value.
-				// contestants.map(( contestant, i ) => (
-				// 	<li key={ i } >
-				// 		{ contestant.get(["players"], contestant.get('value')) }
-				// 	</li>
-				// ))
+				contestants.map(( contestant, i ) => (
+					<li key={ i } >
+						{ contestant.get(["players"], contestant.get('value')) }
+					</li>
+
+
+				))
 			}
 		</ul>
 

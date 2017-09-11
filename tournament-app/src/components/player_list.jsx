@@ -6,7 +6,7 @@ import { fromJS } from "immutable";
 // use key to povide the index number
 // fire a function that removes that specific index from the List.
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants }) => (
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
@@ -38,43 +38,45 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 							return true;
 						}
 					};
-					buttonExecute(arr);
 
 					// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
 					if (buttonExecute(arr) && contestantsArr.length > 0) {
-						console.log("first if statement");
 						if (window.confirm("Overwrite Current tournament")) {
 						//Randomise the arrays order
-						arr = shuffleArray(arr);
+						let shuffledArray = shuffleArray(arr);
 						//Convert the array back into an immutable object.
-						arr = fromJS(arr);
-						//Call a function that will create a new List of Maps called competitors.
-						createMatchup(arr);
-						//Call a function that will trigger the number of rounds to be generated.
-						makeTree(arr.size);
-						//Call a function that will trigger the number of matches in the first round to be calculated.
-						matchNumber(arr.size);
+						let shuffledImmutableArray = fromJS(shuffledArray);
+						//Call function that will trigger the number of rounds to be generated.
+						makeTree(shuffledImmutableArray.size);
+						//Call function that will trigger the number of matches in the first round to be calculated.
+						matchNumber(shuffledImmutableArray.size);
+						//Call function that will create a new List of Maps called competitors.
+						createMatchup(shuffledImmutableArray);
+						//Call function that generates the Tournament object data.
+						makeTournament(shuffledImmutableArray);
+
 						}
 					} else if (buttonExecute(arr)) {
-						console.log("second if statement");
 						//Randomise the arrays order
-						arr = shuffleArray(arr);
+						let shuffledArray = shuffleArray(arr);
 						//Convert the array back into an immutable object.
-						arr = fromJS(arr);
-						//Call a function that will create a new List of Maps called competitors.
-						createMatchup(arr);
+						let shuffledImmutableArray = fromJS(shuffledArray);
 						//Call a function that will trigger the number of rounds to be generated.
-						makeTree(arr.size);
+						makeTree(shuffledImmutableArray.size);
 						//Call a function that will trigger the number of matches in the first round to be calculated.
-						matchNumber(arr.size);
+						matchNumber(shuffledImmutableArray.size);
+						//Call a function that will create a new List of Maps called competitors.
+						createMatchup(shuffledImmutableArray);
+						//Call function that generates the Tournament object data.
+						makeTournament(shuffledImmutableArray);
 					} else if (!buttonExecute(arr) && contestantsArr.length > 0) {
 						if (window.confirm("Overwrite Current tournament")) {
 							console.log("first else statement");
-							arr = fromJS(arr);
+							let originalArray = fromJS(arr);
 							//Call a function that will clear the competitors list.
-							clearCompetitors(arr);
-							matchNumber(arr.size);
-							makeTree(arr.size);
+							clearCompetitors(originalArray);
+							matchNumber(originalArray.size);
+							makeTree(originalArray.size);
 					}
 					}
 		} } >Generate Tournament!!!</button>
