@@ -17,10 +17,12 @@ import Player from "../components/player_list";
 const mapStateToProps = state => {
 	let input = state.getIn(["value"]);
 	let playerName = state.get("players");
+	let contestants = state.get("contestants");
 
 		return {
 			value: input,
 			player: playerName,
+			contestants: contestants,
 		}
 };
 
