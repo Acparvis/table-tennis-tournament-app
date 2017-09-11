@@ -32,18 +32,23 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			//@todo move this fuction logic to reducer
 			// this converts the object to an array.
 			let arr = player.toArray();
-			arr = shuffleArray(arr);
-			arr = fromJS(arr);
 
-			//call a function here that will create a new List of Maps called competitors.
-			createMatchup(arr);
+			// Check there is at least one player in the array.
+			if (arr.length > 0) {
+				//Randomise the arrays order
+				arr = shuffleArray(arr);
+				//Convert the array back into an immutable object.
+				arr = fromJS(arr);
 
-			//call a function here that will trigger the number of rounds to be generated.
-			makeTree(arr.size);
+				//Call a function that will create a new List of Maps called competitors.
+				createMatchup(arr);
 
-			//call a function here that will trigger the numebr of matches in the first round to be calculated.
-			matchNumber(arr.size);
+				//Call a function that will trigger the number of rounds to be generated.
+				makeTree(arr.size);
 
+				//Call a function that will trigger the number of matches in the first round to be calculated.
+				matchNumber(arr.size);
+			}
 			console.log("array: ", arr.size);
 		} } >Start Tournament!!!</button>
 	</div>
