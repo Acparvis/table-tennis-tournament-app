@@ -75,7 +75,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 							clearCompetitors(arr);
 							matchNumber(arr.size);
 							makeTree(arr.size);
-						}
+					}
 					}
 		} } >Generate Tournament!!!</button>
 	</div>

@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 
 
 	return {
-		player: contestantList,
+		contestants: contestantList,
 		numberofrounds: roundNumber,
 		numberofcontestants: numberofcontestants,
 		firstroundmatches: matchNumber
