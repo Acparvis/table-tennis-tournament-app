@@ -40,7 +40,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					};
 					buttonExecute(arr);
 
-
+					// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
 					if (buttonExecute(arr) && contestantsArr.length > 0) {
 						console.log("first if statement");
 						if (window.confirm("Overwrite Current tournament")) {
@@ -67,19 +67,16 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 						makeTree(arr.size);
 						//Call a function that will trigger the number of matches in the first round to be calculated.
 						matchNumber(arr.size);
-					} else {
-						console.log("else statement");
-						arr = fromJS(arr);
-						//Call a function that will clear the competitors list.
-						clearCompetitors(arr);
-						matchNumber(arr.size);
-						makeTree(arr.size);
+					} else if (!buttonExecute(arr) && contestantsArr.length > 0) {
+						if (window.confirm("Overwrite Current tournament")) {
+							console.log("first else statement");
+							arr = fromJS(arr);
+							//Call a function that will clear the competitors list.
+							clearCompetitors(arr);
+							matchNumber(arr.size);
+							makeTree(arr.size);
+						}
 					}
-
-
-
-
-			console.log("array: ", arr.size);
 		} } >Generate Tournament!!!</button>
 	</div>
 );

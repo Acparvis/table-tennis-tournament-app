@@ -36,7 +36,7 @@ const defineRounds = (state, { value }) => state.set("numberofrounds", Math.ceil
 // // Works out how many mtaches will be in the frist round of the tournament. If the player number is uneven, we round up to provide a partial match, later on we can use this match as a bi mtach, thereby providing a random seed in the tournament if the player number is odd.
 // Futher on we can also use this code to generate subsequent rounds.
 const firstRoundMatches = (state, { value }) => {
-            if (value%2 == 0){
+            if (value%2 === 0){
                 value = value/2;
                 return state.set("firstroundmatches", value);
             } else

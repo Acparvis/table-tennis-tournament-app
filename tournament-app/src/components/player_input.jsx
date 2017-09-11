@@ -5,7 +5,7 @@ import React from "react";
 export default ({ textChange, value, player, playerSubmit, currentId, increaseId, clearInput}) => (
 	<div>
 		<h1>Enter Players</h1>
-	        <input id="playerInput" value={ value } onChange={ (e) => textChange(e.target.value) }
+	        <input id="playerInput" type="text" pattern="[A-Za-z]" value={ value } onChange={ (e) => textChange(e.target.value) }
 				onKeyPress={ (e) => {
 					if(e.key === "Enter" && e.target.value.length > 0){
 						playerSubmit(value, currentId);

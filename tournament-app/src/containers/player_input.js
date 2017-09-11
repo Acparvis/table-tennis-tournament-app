@@ -5,7 +5,6 @@ import {
 	updateList,
 	updateId,
 	resetValue,
-	decrementListSize,
 } from "../data/actions/state";
 
 import PlayerInput from "../components/player_input";
