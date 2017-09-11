@@ -31,28 +31,53 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 
 			// this converts the object to an array.
 			let arr = player.toArray();
+			let contestantsArr = contestants.toArray();
 
-					if (arr.length > 0 ) {
+				const buttonExecute = (arr) => {
+						if (arr.length > 0) {
+							return true;
+						}
+					};
+					buttonExecute(arr);
+
+
+					if (buttonExecute(arr) && contestantsArr.length > 0) {
+						console.log("first if statement");
+						if (window.confirm("Overwrite Current tournament")) {
 						//Randomise the arrays order
 						arr = shuffleArray(arr);
 						//Convert the array back into an immutable object.
 						arr = fromJS(arr);
-
 						//Call a function that will create a new List of Maps called competitors.
 						createMatchup(arr);
-
 						//Call a function that will trigger the number of rounds to be generated.
 						makeTree(arr.size);
-
+						//Call a function that will trigger the number of matches in the first round to be calculated.
+						matchNumber(arr.size);
+						}
+					} else if (buttonExecute(arr)) {
+						console.log("second if statement");
+						//Randomise the arrays order
+						arr = shuffleArray(arr);
+						//Convert the array back into an immutable object.
+						arr = fromJS(arr);
+						//Call a function that will create a new List of Maps called competitors.
+						createMatchup(arr);
+						//Call a function that will trigger the number of rounds to be generated.
+						makeTree(arr.size);
 						//Call a function that will trigger the number of matches in the first round to be calculated.
 						matchNumber(arr.size);
 					} else {
+						console.log("else statement");
 						arr = fromJS(arr);
 						//Call a function that will clear the competitors list.
 						clearCompetitors(arr);
 						matchNumber(arr.size);
 						makeTree(arr.size);
-				}
+					}
+
+
+
 
 			console.log("array: ", arr.size);
 		} } >Generate Tournament!!!</button>
