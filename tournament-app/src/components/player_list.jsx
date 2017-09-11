@@ -55,6 +55,6 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				}
 
 			console.log("array: ", arr.size);
-		} } >Start Tournament!!!</button>
+		} } >Generate Tournament!!!</button>
 	</div>
 );
