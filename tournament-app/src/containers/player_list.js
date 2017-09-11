@@ -7,6 +7,7 @@ import {
 	defineRounds,
 	firstRoundMatches,
 	playerDelete,
+	resetCompetitors,
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
@@ -29,6 +30,7 @@ const mapDispatchToProps = dispatch => ({
 	makeTree: (value) => dispatch(defineRounds(value)),
 	matchNumber: (value) => dispatch(firstRoundMatches(value)),
 	removePlayer: (value) => dispatch(playerDelete(value)),
+	clearCompetitors: (value) => dispatch(resetCompetitors(value)),
 });
 
 

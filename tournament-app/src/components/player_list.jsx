@@ -6,7 +6,7 @@ import { fromJS } from "immutable";
 // use key to povide the index number
 // fire a function that removes that specific index from the List.
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId }) => (
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
@@ -29,7 +29,6 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 		    return a;
 		} // ~~ is a new operator that is shorthand for Math.floor
 
-			//@todo move this fuction logic to reducer
 			// this converts the object to an array.
 			let arr = player.toArray();
 
@@ -48,6 +47,10 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 
 				//Call a function that will trigger the number of matches in the first round to be calculated.
 				matchNumber(arr.size);
+			} else {
+				arr = fromJS(arr);
+				//Call a function that will clear the competitors list.
+				clearCompetitors(arr);
 			}
 			console.log("array: ", arr.size);
 		} } >Start Tournament!!!</button>

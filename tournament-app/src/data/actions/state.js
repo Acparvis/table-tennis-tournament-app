@@ -54,3 +54,10 @@ export const playerDelete = (value) => ({
 	type: PLAYER_DELETE,
 	value,
 });
+
+export const RESET_COMPETITORS = Symbol("RESET_COMPETITORS");
+
+export const resetCompetitors = (value) => ({
+	type: RESET_COMPETITORS,
+	value,
+});

@@ -13,7 +13,7 @@ export default ({ player, numberofrounds, numberofcontestants, firstroundmatches
 			{
 				player.map(( player, i ) => (
 				//This loop iterates over each player in the list and creates a list item with the value.
-				<li key={ i } >
+				<li key={ i + i} >
 					{ player.get(["players"], player.get('value')) }
 				</li>
 			)) }

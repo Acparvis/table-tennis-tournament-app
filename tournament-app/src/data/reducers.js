@@ -10,6 +10,7 @@ import {
     FIRST_ROUND_MATCHES,
     RESET_VALUE,
     PLAYER_DELETE,
+    RESET_COMPETITORS,
 } from "./actions/state"
 
 // state functions
@@ -50,7 +51,8 @@ const resetValue = (state, { value } ) => state.set("value", value);
 //removes the player by index using immutable delete function.
 const playerDelete = (state, { value } ) => state.update('players', p => p.delete(value));
 
-
+//Resets the competitors list to empty.
+const resetCompetitors = (state, { value } ) => state.set("contestants", value);
 
 // Reducer switch statement.
 export default (state = initial, action) => {
@@ -63,6 +65,7 @@ export default (state = initial, action) => {
         case FIRST_ROUND_MATCHES: return firstRoundMatches(state, action);
         case RESET_VALUE: return resetValue(state, action);
         case PLAYER_DELETE: return playerDelete(state, action);
+        case RESET_COMPETITORS: return resetCompetitors(state, action);
         default: return state;
     }
 };
