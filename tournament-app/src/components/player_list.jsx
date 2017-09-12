@@ -70,7 +70,6 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 						makeTournament(shuffledImmutableArray, firstroundmatches);
 					} else if (!buttonExecute(arr) && contestantsArr.length > 0) {
 						if (window.confirm("Overwrite Current tournament")) {
-							console.log("first else statement");
 							let originalArray = fromJS(arr);
 							//Call a function that will clear the competitors list.
 							clearCompetitors(originalArray);
