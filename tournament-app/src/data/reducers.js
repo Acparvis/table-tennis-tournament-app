@@ -1,5 +1,5 @@
 import initial from "./initial";
-import { Map, List, merge } from 'immutable';
+import { Map, List, merge, fromJS } from 'immutable';
 
 import {
     UPDATE_TEXT,
@@ -63,9 +63,12 @@ const generateTournament = (state, { value, rounds }) => state.update('Tournamen
             )
         }
     }
+
+    let immutableMatches = fromJS(matches);
+    let immutableBiPlayer = fromJS(biPlayer);
     //@ todo manipulate the firstRoundMatches to get the values out we need to make the matches, probably need to edit the reducer above to do so.
     return Map({
-        Rounds: List([matches, biPlayer])
+        Rounds: List([immutableMatches, immutableBiPlayer])
     })
 });
 

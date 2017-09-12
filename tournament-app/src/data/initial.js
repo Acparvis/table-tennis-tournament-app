@@ -11,7 +11,10 @@ export default Map({
 	contestants: List([]),
 	matches: 0,
 	Tournament: Map({
-		Rounds: List([])
+		Rounds: List([
+			List([]),
+			Map({})
+		])
 	})
 });
 
