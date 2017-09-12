@@ -19,11 +19,13 @@ const mapStateToProps = state => {
 	let input = state.getIn(["value"]);
 	let playerName = state.get("players");
 	let contestants = state.get("contestants");
+	let matchNumber = state.get("firstroundmatches");
 
 		return {
 			value: input,
 			player: playerName,
 			contestants: contestants,
+			firstroundmatches: matchNumber
 		}
 };
 
@@ -34,7 +36,7 @@ const mapDispatchToProps = dispatch => ({
 	matchNumber: (value) => dispatch(firstRoundMatches(value)),
 	removePlayer: (value) => dispatch(playerDelete(value)),
 	clearCompetitors: (value) => dispatch(resetCompetitors(value)),
-	makeTournament: (value) => dispatch(generateTournament(value))
+	makeTournament: (value, rounds) => dispatch(generateTournament(value, rounds))
 });
 
 

@@ -64,7 +64,8 @@ export const resetCompetitors = (value) => ({
 
 export const GENERATE_TOURNAMENT = Symbol("GENERATE_TOURNAMENT");
 
-export const generateTournament = (value) => ({
+export const generateTournament = (value, rounds) => ({
 	type: GENERATE_TOURNAMENT,
 	value,
+	rounds,
 });

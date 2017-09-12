@@ -6,7 +6,7 @@ import { fromJS } from "immutable";
 // use key to povide the index number
 // fire a function that removes that specific index from the List.
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament }) => (
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches }) => (
 	<div>
 		<ul>
 			{ player.map(( player, i ) => (
@@ -52,9 +52,8 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 						matchNumber(shuffledImmutableArray.size);
 						//Call function that will create a new List of Maps called competitors.
 						createMatchup(shuffledImmutableArray);
-						//Call function that generates the Tournament object data.
-						makeTournament(shuffledImmutableArray);
-
+						// //Call function that generates the Tournament object data.
+						makeTournament(shuffledImmutableArray, firstroundmatches);
 						}
 					} else if (buttonExecute(arr)) {
 						//Randomise the arrays order
@@ -65,10 +64,10 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 						makeTree(shuffledImmutableArray.size);
 						//Call a function that will trigger the number of matches in the first round to be calculated.
 						matchNumber(shuffledImmutableArray.size);
-						//Call a function that will create a new List of Maps called competitors.
+						//Call function that will create a new List of Maps called competitors.
 						createMatchup(shuffledImmutableArray);
-						//Call function that generates the Tournament object data.
-						makeTournament(shuffledImmutableArray);
+						// //Call function that generates the Tournament object data.
+						makeTournament(shuffledImmutableArray, firstroundmatches);
 					} else if (!buttonExecute(arr) && contestantsArr.length > 0) {
 						if (window.confirm("Overwrite Current tournament")) {
 							console.log("first else statement");
