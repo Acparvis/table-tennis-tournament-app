@@ -22,3 +22,40 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.player {
+   border: solid black 2px;
+   padding: 0px;
+   margin: 0px;
+   text-align: center;
+}
+
+.player1 {
+   margin: 0px;
+}
+
+.player2 {
+   margin-bottom: 3%;
+}
+
+.vs{
+    text-align: center;
+
+    margin: 0px;
+}
+
+.no-bullets {
+    list-style-type: none;
+}
+
+.delete {
+
+}
+
+.input-field {
+
+}
+
+.player-list {
+
+}

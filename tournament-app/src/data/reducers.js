@@ -1,5 +1,5 @@
 import initial from "./initial";
-import { Map, List, merge, fromJS } from 'immutable';
+import { Map, List, fromJS } from 'immutable';
 
 import {
     UPDATE_TEXT,

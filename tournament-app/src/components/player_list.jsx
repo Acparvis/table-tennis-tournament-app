@@ -8,11 +8,11 @@ import { fromJS } from "immutable";
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches }) => (
 	<div>
-		<ul>
+		<ul className="list-group player-list">
 			{ player.map(( player, i ) => (
-				<li key={ i } >
+				<li key={ i } className="contender list-group-item">
 					{ player.get("value") }
-					<button  onClick={ () => {
+					<button className="delete btn btn-warning" onClick={ () => {
 								removePlayer(i);
 							} }>
 							Delete </button>
@@ -20,7 +20,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			)) }
 
 		</ul>
-		<button onClick={ () => {
+		<button className="btn btn-success" onClick={ () => {
 			// this function randomises the order of items in an array.
 			function shuffleArray(a) { // Fisher-Yates shuffle
 		    var i = a.length, t, j;
