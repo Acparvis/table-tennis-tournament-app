@@ -60,3 +60,7 @@ li.game{
   li.game-bottom{
     border-top:1px solid #aaa;
   }
+
+  .player {
+     color: yellow !important;
+  }

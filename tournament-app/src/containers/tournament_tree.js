@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 	let rounds = state.getIn(["Tournament", "Rounds", "0"]);
 	let biPlayer = state.getIn(["Tournament", "Rounds", "1"]);
 
-	console.log(rounds);
+
 
 
 	return {

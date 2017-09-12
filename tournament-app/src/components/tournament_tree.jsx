@@ -16,9 +16,9 @@ export default ({ contestants, numberofrounds, numberofcontestants, firstroundma
 					// This loop iterates over each player in the list and creates a list item with the value.
 					rounds.map(( round, i ) => (
 						<li key={ i } >
-							<p>{ round.get("player1") }</p>
+							<p className="player">{ round.get("player1") }</p>
 							<p> VERSUS </p>
-							<p>{ round.get("player2") }</p>
+							<p className="player">{ round.get("player2") }</p>
 						</li>
 					))
 				}
