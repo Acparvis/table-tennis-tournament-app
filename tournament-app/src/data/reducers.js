@@ -1,5 +1,5 @@
 import initial from "./initial";
-import { Map, List, merge, fromJS, toJS } from 'immutable';
+import { Map, List, merge } from 'immutable';
 
 import {
     UPDATE_TEXT,
@@ -37,34 +37,48 @@ const updateId = ( state, { value }) => state.set("listsize", value + 1);
 // Populates the contestants list with all the players in a randomised order.
 const updateContestants = ( state, { value }) => state.set("contestants", value);
 
+
+
+
 //Generates data for Tournament object
 const generateTournament = (state, { value, rounds }) => state.update('Tournament', (p) => {
+
     let firstRoundMatches = state.get("firstroundmatches");
-    let array = value.toJS();
-    let matches = [];
-    let biPlayer = "";
-    let numberOfRounds = state.get("numberofrounds");
 
-    if (array.length % 2 !== 0) {
-        biPlayer = array.pop()["value"];
-    }
+    let evenMatches = value.reduce(function(result, value, index, array) {
+        if (index % 2 === 0)
+            result.push(Map({
+                        player1: value.get("value"),
+                        outcome: 0
+                    }));
+        return result;
+    }, [])
 
-    for (var i = 0; i < array.length; i++) {
-        if (i%2 === 0) {
-            matches.push(
-                {
-                    player1: array[i]["value"],
-                    player2: array[i + 1]["value"],
-                    result: 0
-                }
-            )
-        }
-    }
+    let oddMatches = value.reduce(function(result, value, index, array) {
+        if (!index % 2 === 0)
+        result.push(Map({
+                    player2: value.get("value"),
+                }));
+        return result;
+    }, [])
+
+// console.log("result: ", evenMatches.mergeWith(oddMatches));
+
+
+
+console.log("result: ", evenMatches, oddMatches);
+
+
+
+
+
     //@ todo manipulate the firstRoundMatches to get the values out we need to make the matches, probably need to edit the reducer above to do so.
     return Map({
-        Rounds: List([matches, biPlayer])
+        Rounds: List([evenMatches, oddMatches])
     })
 });
+
+
 
 // Works out how many rounds need to be generated and sets the numebr in the state. Takes the square root and then roudns up to the nearest whole number.
 const defineRounds = (state, { value }) => state.set("numberofrounds", Math.ceil(Math.sqrt(value)));
