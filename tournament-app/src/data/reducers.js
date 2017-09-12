@@ -42,7 +42,7 @@ const updateContestants = ( state, { value }) => state.set("contestants", value)
 
 //Generates data for Tournament object
 const generateTournament = (state, { value, rounds }) => state.update('Tournament', (p) => {
-    console.log("rounds: ", state.get("firstroundmatches"));
+    console.log("Matches in first round: ", state.get("firstroundmatches"));
     let firstRoundMatches = state.get("firstroundmatches");
     //reducer takes the players and splits them into arrays of two
     value.reduce(function(result, value, index, array) {
