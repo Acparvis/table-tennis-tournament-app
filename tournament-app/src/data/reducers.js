@@ -63,6 +63,9 @@ const generateTournament = (state, { value, rounds }) => state.update('Tournamen
     }, [])
 
 // console.log("result: ", evenMatches.mergeWith(oddMatches));
+
+
+
 console.log("result: ", evenMatches, oddMatches);
 
 
