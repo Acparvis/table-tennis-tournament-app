@@ -1,5 +1,5 @@
 import initial from "./initial";
-import { Map, List } from 'immutable';
+import { Map, List, merge } from 'immutable';
 
 import {
     UPDATE_TEXT,
@@ -42,18 +42,36 @@ const updateContestants = ( state, { value }) => state.set("contestants", value)
 
 //Generates data for Tournament object
 const generateTournament = (state, { value, rounds }) => state.update('Tournament', (p) => {
-    console.log("Matches in first round: ", state.get("firstroundmatches"));
+
     let firstRoundMatches = state.get("firstroundmatches");
-    //reducer takes the players and splits them into arrays of two
-    value.reduce(function(result, value, index, array) {
+
+    let evenMatches = value.reduce(function(result, value, index, array) {
         if (index % 2 === 0)
-            result.push(array.slice(index, index + 2));
+            result.push(Map({
+                        player1: value.get("value"),
+                        outcome: 0
+                    }));
         return result;
     }, [])
 
+    let oddMatches = value.reduce(function(result, value, index, array) {
+        if (!index % 2 === 0)
+        result.push(Map({
+                    player2: value.get("value"),
+                }));
+        return result;
+    }, [])
+
+// console.log("result: ", evenMatches.mergeWith(oddMatches));
+console.log("result: ", evenMatches, oddMatches);
+
+
+
+
+
     //@ todo manipulate the firstRoundMatches to get the values out we need to make the matches, probably need to edit the reducer above to do so.
     return Map({
-        Rounds: firstRoundMatches
+        Rounds: List([evenMatches, oddMatches])
     })
 });
 
