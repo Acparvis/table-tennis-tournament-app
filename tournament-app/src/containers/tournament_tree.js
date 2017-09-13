@@ -25,6 +25,8 @@ const mapStateToProps = state => {
 
 };
 
+//test comment
+
 const mapDispatchToProps = dispatch => ({
 	playerWin: (value, result) => dispatch(playerWins(value, result))
 });
