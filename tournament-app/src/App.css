@@ -59,3 +59,15 @@
 .player-list {
 
 }
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.contain {
+    padding: 0px;
+}
+
+.no-margin {
+    margin: 0px;
+}

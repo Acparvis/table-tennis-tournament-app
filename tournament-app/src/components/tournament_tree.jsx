@@ -8,17 +8,15 @@ export default ({ contestants, numberofrounds, numberofcontestants, firstroundma
 		<p>Number of players { numberofcontestants }</p>
 		<p>Number of matches in First Round { firstroundmatches }</p>
 
-
-
 		<p>Contestants:</p>
 			<ul className="no-bullets">
 				{
 					// This loop iterates over each player in the list and creates a list item with the value.
 					rounds.map(( round, i ) => (
 						<li key={ i } >
-							<button className="player player1">{ round.get("player1") }</button>
-							<p className="vs"> Vs </p>
-							<button className="player player2">{ round.get("player2") }</button>
+							<button className="player1 btn col-lg-1">{ round.get("player1") }</button>
+							<p className="btn col-lg-1"> Vs </p>
+							<button className="player2 btn col-lg-1">{ round.get("player2") }</button>
 						</li>
 					))
 				}
