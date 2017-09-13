@@ -7,11 +7,11 @@ import { fromJS } from "immutable";
 // fire a function that removes that specific index from the List.
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches }) => (
-	<div className="col-lg-12 contain">
-		<ul className="col-lg-5 col-4 offset-lg-4">
+	<div className="contain">
+		<ul className="">
 			{ player.map(( player, i ) => (
 			<div key={ i } className="row">
-				<li  className="col-lg-3 no-bullets">
+				<li  className="no-bullets">
 					{ player.get("value") }
 				</li>
 				<button className="delete btn btn-warning" onClick={ () => {
@@ -23,7 +23,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			)) }
 
 		</ul>
-		<button className="btn btn-success offset-lg-4" onClick={ () => {
+		<button className="btn btn-success" onClick={ () => {
 			// this function randomises the order of items in an array.
 			function shuffleArray(a) { // Fisher-Yates shuffle
 		    var i = a.length, t, j;

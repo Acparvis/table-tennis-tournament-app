@@ -3,11 +3,11 @@ import React from "react";
 
 //@todo set input field to reset after Enter button is pressed.
 export default ({ textChange, value, player, playerSubmit, currentId, increaseId, clearInput}) => (
-<div className="col-lg-12 contain">
-	<h1 className="col-lg-4 col-4 offset-lg-5">Enter Players</h1>
+<div className="contain">
+	<h1 className="">Enter Players</h1>
 	<div className="row col-lg-12">
 
-	        <input id="playerInput" className="form-control input-field col-lg-3 col-4 offset-lg-4" type="text" pattern="[A-Za-z]" value={ value } onChange={ (e) => textChange(e.target.value) }
+	        <input id="playerInput" className="form-control input-field" type="text" pattern="[A-Za-z]" value={ value } onChange={ (e) => textChange(e.target.value) }
 				onKeyPress={ (e) => {
 					if(e.key === "Enter" && e.target.value.length > 0){
 						playerSubmit(value, currentId);
@@ -16,7 +16,7 @@ export default ({ textChange, value, player, playerSubmit, currentId, increaseId
 					}
 				} }
 			/>
-			<button className="btn col-lg-1 col-2" onClick={ () => {
+			<button className="btn" onClick={ () => {
 					if ( value.length > 0) {
 					playerSubmit(value, currentId);
 					increaseId(currentId);

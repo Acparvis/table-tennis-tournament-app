@@ -32,14 +32,16 @@
 
 .player1 {
    margin: 0px;
+   width:7%;
 }
 
 .player2 {
    margin-bottom: 3%;
+   width:7%;
 }
 
 .vs{
-    text-align: center;
+    margin: 3% 0%;
 
     margin: 0px;
 }
