@@ -1,91 +1,92 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .start {
-    margin: 1%;
+	margin: 1%;
 }
 
 .player {
-    position: relative;
-    top: 5px;
-    left: 35%;
-    margin-bottom: 1%;
+	position: relative;
+	top: 5px;
+	left: 35%;
+	margin-bottom: 1%;
 }
 
 .player1 {
-   margin: 0px;
-   width:5em;
+	margin: 0px;
+	width: 5em;
 }
 
 .player2 {
-   margin-bottom: 3%;
-   width:5em;
+	margin-bottom: 3%;
+	width: 5em;
 }
 
-.vs{
-    margin: 3% 0%;
-    width: 5em;
-    margin: 0px;
-    text-align: center;
+.vs {
+	margin: 3% 0%;
+	width: 5em;
+	margin: 0px;
+	text-align: center;
 }
 
 .no-bullets {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 .player-input {
-    width: 30%;
+	width: 30%;
 }
 
 .start {
-    left: 10%;
+	left: 10%;
 }
 
-
-
-body{
-    font-family: 'Ubuntu', sans-serif;
+body {
+	font-family: 'Ubuntu', sans-serif;
 }
 
 .contain {
-    display: flex;
-    width: 100%;
-    padding: 0px;
-    justify-content: center;
+	display: flex;
+	width: 100%;
+	padding: 0px;
+	justify-content: center;
 }
 
 .contain2 {
-    display: flex;
-    width: 100%;
-    padding: 0px;
-    justify-content: center;
-    align-content: center;
-    flex-direction:column;
+	display: flex;
+	width: 100%;
+	padding: 0px;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
 }
 
-
 .no-margin {
-    margin: 0px;
+	margin: 0px;
 }

@@ -1,6 +1,4 @@
-import { connect } from "react-redux";
-
-
+import {connect} from "react-redux";
 
 import {
 	updateContestants,
@@ -8,12 +6,10 @@ import {
 	firstRoundMatches,
 	playerDelete,
 	resetCompetitors,
-	generateTournament,
+	generateTournament
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
-
-
 
 const mapStateToProps = state => {
 	let input = state.getIn(["value"]);
@@ -21,14 +17,8 @@ const mapStateToProps = state => {
 	let contestants = state.get("contestants");
 	let matchNumber = state.get("firstroundmatches");
 
-		return {
-			value: input,
-			player: playerName,
-			contestants: contestants,
-			firstroundmatches: matchNumber
-		}
+	return {value: input, player: playerName, contestants: contestants, firstroundmatches: matchNumber}
 };
-
 
 const mapDispatchToProps = dispatch => ({
 	createMatchup: (value) => dispatch(updateContestants(value)),
@@ -38,6 +28,5 @@ const mapDispatchToProps = dispatch => ({
 	clearCompetitors: (value) => dispatch(resetCompetitors(value)),
 	makeTournament: (value, rounds) => dispatch(generateTournament(value, rounds))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

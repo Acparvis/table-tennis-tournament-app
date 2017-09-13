@@ -1,5 +1,4 @@
-import { Map, List } from "immutable";
-
+import {Map, List} from "immutable";
 
 // Beggining state, once a player is entered this info will be overwritten.
 export default Map({
@@ -11,10 +10,7 @@ export default Map({
 	contestants: List([]),
 	matches: 0,
 	Tournament: Map({
-		Rounds: List([
-			List([]),
-			Map({})
-		])
+		Rounds: List([List([]), Map({})])
 	})
 });
 

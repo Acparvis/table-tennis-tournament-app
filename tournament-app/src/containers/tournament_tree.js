@@ -1,13 +1,8 @@
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-
-import {
-
-} from "../data/actions/state";
+import {} from "../data/actions/state";
 
 import TournamentTree from "../components/tournament_tree";
-
-
 
 const mapStateToProps = state => {
 	let contestantList = state.get("contestants");
@@ -16,9 +11,6 @@ const mapStateToProps = state => {
 	let matchNumber = state.get("firstroundmatches");
 	let rounds = state.getIn(["Tournament", "Rounds", "0"]);
 	let biPlayer = state.getIn(["Tournament", "Rounds", "1"]);
-
-
-
 
 	return {
 		contestants: contestantList,
@@ -31,10 +23,6 @@ const mapStateToProps = state => {
 
 };
 
-
-const mapDispatchToProps = dispatch => ({
-
-});
-
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentTree);
