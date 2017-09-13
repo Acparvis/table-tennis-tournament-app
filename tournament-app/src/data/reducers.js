@@ -11,7 +11,8 @@ import {
 	RESET_VALUE,
 	PLAYER_DELETE,
 	RESET_COMPETITORS,
-	GENERATE_TOURNAMENT
+	GENERATE_TOURNAMENT,
+	PLAYER_WINS
 } from "./actions/state"
 
 // state functions
@@ -58,7 +59,7 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 
 	let immutableMatches = fromJS(matches);
 	let immutableBiPlayer = fromJS(biPlayer);
-	//@ todo manipulate the firstRoundMatches to get the values out we need to make the matches, probably need to edit the reducer above to do so.
+
 	return Map({
 		Rounds: List([immutableMatches, immutableBiPlayer])
 	})
@@ -87,6 +88,15 @@ const playerDelete = (state, {value}) => state.update('players', p => p.delete(v
 //Resets the competitors list to empty.
 const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
+/////////// TOURNAMENT REDUCERS
+
+const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
+
+
+
+
+
+
 // Reducer switch statement.
 export default(state = initial, action) => {
 	switch (action.type) {
@@ -110,6 +120,8 @@ export default(state = initial, action) => {
 			return resetCompetitors(state, action);
 		case GENERATE_TOURNAMENT:
 			return generateTournament(state, action);
+		case PLAYER_WINS:
+			return playerWins(state, action);
 		default:
 			return state;
 	}

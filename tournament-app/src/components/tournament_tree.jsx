@@ -6,7 +6,8 @@ export default({
 	numberofcontestants,
 	firstroundmatches,
 	rounds,
-	biPlayer
+	biPlayer,
+	playerWin
 }) => (
 	<div>
 		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
@@ -20,11 +21,11 @@ export default({
 						{// This loop iterates over each player in the list and creates a list item with the value.
 						rounds.map((round, i) => (
 							<li key={i}>
-								<button className="player1 btn">{round.get("player1")}</button>
+								<button className="player1 btn" onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
 								<p className="vs">
 									Vs
 								</p>
-								<button className="player2 btn">{round.get("player2")}</button>
+								<button className="player2 btn" onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
 							</li>
 						))
 }

@@ -69,3 +69,11 @@ export const generateTournament = (value, rounds) => ({
 	value,
 	rounds,
 });
+
+export const PLAYER_WINS = Symbol("PLAYER_WINS");
+
+export const playerWins = (value, result) => ({
+	type: PLAYER_WINS,
+	value,
+	result,
+});

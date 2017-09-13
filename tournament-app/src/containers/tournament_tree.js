@@ -1,6 +1,8 @@
 import {connect} from "react-redux";
 
-import {} from "../data/actions/state";
+import {
+	playerWins,
+} from "../data/actions/state";
 
 import TournamentTree from "../components/tournament_tree";
 
@@ -23,6 +25,8 @@ const mapStateToProps = state => {
 
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+	playerWin: (value, result) => dispatch(playerWins(value, result))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentTree);

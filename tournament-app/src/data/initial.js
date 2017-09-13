@@ -14,7 +14,6 @@ export default Map({
 	})
 });
 
-
 //
 //tournament object
 // {
@@ -36,7 +35,6 @@ export default Map({
 // outcome: int 0 - 1
 //
 // }
-
 
 // Tournament {
 // 	Rounds[
