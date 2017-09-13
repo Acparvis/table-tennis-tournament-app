@@ -6,7 +6,8 @@ import {
 	firstRoundMatches,
 	playerDelete,
 	resetCompetitors,
-	generateTournament
+	generateTournament,
+	regenListSize
 } from "../data/actions/state";
 
 import Player from "../components/player_list";
@@ -26,7 +27,8 @@ const mapDispatchToProps = dispatch => ({
 	matchNumber: (value) => dispatch(firstRoundMatches(value)),
 	removePlayer: (value) => dispatch(playerDelete(value)),
 	clearCompetitors: (value) => dispatch(resetCompetitors(value)),
-	makeTournament: (value, rounds) => dispatch(generateTournament(value, rounds))
+	makeTournament: (value, rounds) => dispatch(generateTournament(value, rounds)),
+	updateListSize: (value) => dispatch(regenListSize(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

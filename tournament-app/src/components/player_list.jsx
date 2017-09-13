@@ -2,7 +2,7 @@ import React from "react";
 import { fromJS, sortBy } from "immutable";
 
 
-export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches }) => (
+export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches, updateListSize }) => (
 	<div className="container">
 		<div className="contain">
 		<button className="btn btn-success start" onClick={ () => {
@@ -19,20 +19,24 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
 			if (buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
-				//Call function that will trigger the number of rounds to be generated.
+				// Call function that will trigger the number of rounds to be generated.
 				makeTree(shuffledImmutableArray.size);
-				//Call function that will trigger the number of matches in the first round to be calculated.
+				// Call function that will trigger the number of matches in the first round to be calculated.
 				matchNumber(shuffledImmutableArray.size);
-				//Call function that will create a new List of Maps called competitors.
+				// Call function that will create a new List of Maps called competitors.
 				createMatchup(shuffledImmutableArray);
-				// //Call function that generates the Tournament object data.
+				// Call function that generates the Tournament object data.
 				makeTournament(shuffledImmutableArray, firstroundmatches);
+				// Call function that updates the listsize property
+				updateListSize(player.size);
+
 				}
 			} else if (buttonExecute(player)) {
 				makeTree(shuffledImmutableArray.size);
 				matchNumber(shuffledImmutableArray.size);
 				createMatchup(shuffledImmutableArray);
 				makeTournament(shuffledImmutableArray, firstroundmatches);
+				updateListSize(player.size);
 			} else if (!buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
 					console.log("THIS ONE");
@@ -40,6 +44,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					matchNumber(player.size);
 					makeTree(player.size);
 					makeTournament(player, 0);
+					updateListSize(player.size);
 
 				}
 			}

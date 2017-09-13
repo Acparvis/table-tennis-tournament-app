@@ -77,3 +77,10 @@ export const playerWins = (value, result) => ({
 	value,
 	result,
 });
+
+export const REGEN_LIST_SIZE = Symbol("REGEN_LIST_SIZE");
+
+export const regenListSize = (value) => ({
+	type: REGEN_LIST_SIZE,
+	value,
+});

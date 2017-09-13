@@ -12,7 +12,8 @@ import {
 	PLAYER_DELETE,
 	RESET_COMPETITORS,
 	GENERATE_TOURNAMENT,
-	PLAYER_WINS
+	PLAYER_WINS,
+	REGEN_LIST_SIZE
 } from "./actions/state"
 
 // state functions
@@ -31,6 +32,9 @@ const updateList = (state, {index, value}) => state.update('players', p => {
 
 // Updates the listsize state, so we have a total number of players when we want to start the tournament.
 const updateId = (state, {value}) => state.set("listsize", value + 1);
+
+// Re-generates the listsize proeprty with correct value
+const regenListSize = (state, {value}) => state.set("listsize", value);
 
 // Populates the contestants list with all the players in a randomised order.
 const updateContestants = (state, {value}) => state.set("contestants", value);
@@ -118,6 +122,8 @@ export default(state = initial, action) => {
 			return generateTournament(state, action);
 		case PLAYER_WINS:
 			return playerWins(state, action);
+		case REGEN_LIST_SIZE:
+			return regenListSize(state, action);
 		default:
 			return state;
 	}
