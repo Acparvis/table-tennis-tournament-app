@@ -24,11 +24,11 @@ export default({
 
 						rounds.map((round, i) => (
 							<li key={i}>
-								<button className={round.get("result") == 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
+								<button className={round.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
 								<p className="vs">
 									Vs
 								</p>
-								<button className={round.get("result") == 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
+								<button className={round.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
 							</li>
 						))
 }

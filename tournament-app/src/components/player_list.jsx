@@ -41,7 +41,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			}
 			}
 		} } >Generate Tournament!!!</button>
-		
+
 		</div>
 		<ul className="">
 			{ player.map(( player, i ) => (
