@@ -52,6 +52,12 @@
 	word-wrap: break-word;
 }
 
+.player2:hover, .player1:hover {
+    color: white;
+	background-color: #f7a131;
+	box-shadow: 0px 0px 15px 4px rgba(0,0,0,0.75);
+}
+/*#f4a742      #dd8623*/
 .vs {
 	margin: 3% 0%;
 	width: 7em;

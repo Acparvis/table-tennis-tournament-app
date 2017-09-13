@@ -3,7 +3,7 @@ import {  } from "immutable";
 
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches, updateListSize }) => (
-	<div className="container">
+	<div className="container animated fadeIn">
 		<div className="contain">
 		<button className="btn btn-success start" onClick={ () => {
 			let shuffledImmutableArray = player.sortBy(Math.random);

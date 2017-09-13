@@ -13,7 +13,7 @@ export default({
 		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
 		{numberofcontestants > 0
 			? (
-				<div>
+				<div className="animated fadeIn">
 					<div className="contain">
 						<h1>Tournament</h1>
 					</div>

@@ -10,7 +10,7 @@ export default({
 	increaseId,
 	clearInput
 }) => (
-	<div className="">
+	<div className="animated fadeIn">
 		<div className="contain">
 			<h1 className="">Enter Players</h1>
 		</div>
