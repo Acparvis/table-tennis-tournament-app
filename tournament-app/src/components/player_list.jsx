@@ -7,17 +7,17 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 		<div className="contain">
 		<button className="btn btn-success start" onClick={ () => {
 			let shuffledImmutableArray = player.sortBy(Math.random);
-			let arr = player.toArray();
+
 			let contestantsArr = contestants.toArray();
 
 			const buttonExecute = (arr) => {
-				if (arr.length > 0) {
+				if (arr.size > 0) {
 					return true;
 				}
 			};
 
 			// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
-			if (buttonExecute(arr) && contestantsArr.length > 0) {
+			if (buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
 				//Call function that will trigger the number of rounds to be generated.
 				makeTree(shuffledImmutableArray.size);
@@ -28,17 +28,20 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				// //Call function that generates the Tournament object data.
 				makeTournament(shuffledImmutableArray, firstroundmatches);
 				}
-			} else if (buttonExecute(arr)) {
+			} else if (buttonExecute(player)) {
 				makeTree(shuffledImmutableArray.size);
 				matchNumber(shuffledImmutableArray.size);
 				createMatchup(shuffledImmutableArray);
 				makeTournament(shuffledImmutableArray, firstroundmatches);
-			} else if (!buttonExecute(arr) && contestantsArr.length > 0) {
+			} else if (!buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
+					console.log("THIS ONE");
 					clearCompetitors(player);
 					matchNumber(player.size);
 					makeTree(player.size);
-			}
+					makeTournament(player, 0);
+
+				}
 			}
 		} } >Generate Tournament!!!</button>
 
