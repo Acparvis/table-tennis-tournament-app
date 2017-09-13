@@ -1,5 +1,5 @@
 import React from "react";
-import { fromJS, sortBy } from "immutable";
+import {  } from "immutable";
 
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches, updateListSize }) => (

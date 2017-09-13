@@ -25,8 +25,7 @@ const updateText = (state, {value}) => state.set("value", value);
 const updateList = (state, {index, value}) => state.update('players', p => {
 	return p.push(Map({
 		id: index + 1,
-		value: value,
-		winner: 0
+		value: value
 	}))
 });
 
@@ -41,17 +40,15 @@ const updateContestants = (state, {value}) => state.set("contestants", value);
 
 //Generates data for Tournament object
 const generateTournament = (state, {value, rounds}) => state.update('Tournament', (p) => {
-	let firstRoundMatches = state.get("firstroundmatches");
 	let array = value.toJS();
 	let matches = [];
 	let biPlayer = "";
-	let numberOfRounds = state.get("numberofrounds");
 
 	if (array.length % 2 !== 0) {
-		biPlayer = array.pop()["value"];
+		biPlayer = array.pop()["value"];// Gets the random odd player who will be given a free round.
 	}
 
-	for (var i = 0; i < array.length; i++) {
+	for (var i = 0; i < array.length; i++) {//creates a Map for each map in the round
 		if (i % 2 === 0) {
 			matches.push({
 				player1: array[i]["value"],
@@ -72,7 +69,7 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 // Works out how many rounds need to be generated and sets the numebr in the state. Takes the square root and then roudns up to the nearest whole number.
 const defineRounds = (state, {value}) => state.set("numberofrounds", Math.ceil(Math.sqrt(value)));
 
-// // Works out how many matches will be in the frist round of the tournament. If the player number is uneven, we round up to provide a partial match, later on we can use this match as a bi match, thereby providing a random seed in the tournament if the player number is odd.
+// // Works out how many matches will be in the first round of the tournament. If the player number is uneven, we round up to provide a partial match, later on we can use this match as a bi match, thereby providing a random seed in the tournament if the player number is odd.
 // Further on we can also use this code to generate subsequent rounds.
 const firstRoundMatches = (state, {value}) => {
 	if (value % 2 === 0) {
