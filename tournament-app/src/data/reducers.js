@@ -88,14 +88,10 @@ const playerDelete = (state, {value}) => state.update('players', p => p.delete(v
 //Resets the competitors list to empty.
 const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
-/////////// TOURNAMENT REDUCERS
+/////////// TOURNAMENT REDUCERS ///////////
 
+//Updates which of the first round pairings has won the game - changes state of result.
 const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
-
-
-
-
-
 
 // Reducer switch statement.
 export default(state = initial, action) => {

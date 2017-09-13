@@ -19,13 +19,16 @@ export default({
 					</div>
 					<ul className="no-bullets">
 						{// This loop iterates over each player in the list and creates a list item with the value.
+
+
+
 						rounds.map((round, i) => (
 							<li key={i}>
-								<button className="player1 btn" onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
+								<button className={round.get("result") == 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
 								<p className="vs">
 									Vs
 								</p>
-								<button className="player2 btn" onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
+								<button className={round.get("result") == 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
 							</li>
 						))
 }
@@ -34,7 +37,7 @@ export default({
 						? (
 							<ul className="no-bullets">
 								<li>
-									<button className="player1 btn">{biPlayer}
+									<button className="player1 btn btn-warning">{biPlayer}
 									</button>
 									<br/>Free pass to next round!
 								</li>
