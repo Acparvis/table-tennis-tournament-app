@@ -7,23 +7,9 @@ import { fromJS } from "immutable";
 // fire a function that removes that specific index from the List.
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches }) => (
-	<div className="contain">
-		<ul className="">
-			{ player.map(( player, i ) => (
-			<div key={ i } className="row">
-				<li  className="no-bullets">
-					{ player.get("value") }
-				</li>
-				<button className="delete btn btn-warning" onClick={ () => {
-							removePlayer(i);
-						} }>
-						Delete </button>
-
-			</div>
-			)) }
-
-		</ul>
-		<button className="btn btn-success" onClick={ () => {
+	<div className="container">
+		<div className="contain">
+		<button className="btn btn-success start" onClick={ () => {
 			// this function randomises the order of items in an array.
 			function shuffleArray(a) { // Fisher-Yates shuffle
 		    var i = a.length, t, j;
@@ -81,6 +67,23 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 							makeTree(originalArray.size);
 					}
 					}
-		} } >Generate Tournament!!!</button>
+				} } >Generate Tournament!!!</button>
+		</div>
+		<ul className="">
+			{ player.map(( player, i ) => (
+			<div key={ i } className="row">
+				<button className="delete btn btn-warning player" onClick={ () => {
+							removePlayer(i);
+						} }>
+						Delete
+				</button>
+				<li  className="no-bullets btn player">
+					{ player.get("value") }
+				</li>
+
+			</div>
+			)) }
+
+		</ul>
 	</div>
 );

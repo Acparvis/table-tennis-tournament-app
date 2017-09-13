@@ -23,52 +23,68 @@
   to { transform: rotate(360deg); }
 }
 
+.start {
+    margin: 1%;
+}
+
 .player {
-   border: solid black 2px;
-   padding: 0px;
-   margin: 0px;
-   text-align: center;
+    position: relative;
+    top: 5px;
+    left: 35%;
+    margin-bottom: 1%;
 }
 
 .player1 {
    margin: 0px;
-   width:7%;
+   width:5em;
 }
 
 .player2 {
    margin-bottom: 3%;
-   width:7%;
+   width:5em;
 }
 
 .vs{
     margin: 3% 0%;
-
+    width: 5em;
     margin: 0px;
+    text-align: center;
 }
 
 .no-bullets {
     list-style-type: none;
 }
 
-.delete {
-
+.player-input {
+    width: 30%;
 }
 
-.input-field {
-
+.start {
+    left: 10%;
 }
 
-.player-list {
 
-}
 
 body{
     font-family: 'Ubuntu', sans-serif;
 }
 
 .contain {
+    display: flex;
+    width: 100%;
     padding: 0px;
+    justify-content: center;
 }
+
+.contain2 {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    justify-content: center;
+    align-content: center;
+    flex-direction:column;
+}
+
 
 .no-margin {
     margin: 0px;

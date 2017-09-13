@@ -3,9 +3,12 @@ import React from "react";
 
 export default ({ contestants, numberofrounds, numberofcontestants, firstroundmatches, rounds, biPlayer }) => (
 	<div>
+		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
 		{numberofcontestants > 0 ? (
 		<div>
-			<h1>Tournament</h1>
+			<div className="contain">
+				<h1>Tournament</h1>
+			</div>
 				<ul className="no-bullets">
 					{
 						// This loop iterates over each player in the list and creates a list item with the value.
@@ -17,10 +20,6 @@ export default ({ contestants, numberofrounds, numberofcontestants, firstroundma
 							</li>
 						))
 					}
-
-
-
-
 				</ul>
 				{biPlayer.length > 0 ? (
 					<ul className="no-bullets">
