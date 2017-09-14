@@ -111,7 +111,7 @@ const makeNextRound = (state, { value }) => {
 				return Map({player: match.get("player1")});
 			} else if (match.get("result") === 2){
 				console.log(match.get("player2"));
-				Map({player: match.get("player2")});
+				return Map({player: match.get("player2")});
 			}
 	})
 
@@ -135,6 +135,8 @@ const makeNextRound = (state, { value }) => {
 	// return state.updateIn(["Tournament", "Rounds"],  p => {
 	// 	return p.push(winners)
 	// });
+
+	return state;
 }
 
 // Reducer switch statement.
