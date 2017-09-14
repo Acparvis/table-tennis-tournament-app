@@ -44,6 +44,9 @@ export default({
 							</ul>
 						)
 						: <p></p>}
+				<ul>
+					<button className="generate btn btn-primary">Generate next round</button>
+				</ul>
 
 				</div>
 			)

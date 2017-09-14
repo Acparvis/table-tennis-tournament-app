@@ -16,7 +16,7 @@ export default({
 		</div>
 		<div className="row contain">
 
-			<input id="playerInput" className="form-control input-field player-input" type="text" pattern="[A-Za-z]" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
+			<input id="playerInput" className="form-control input-field player-input" type="text" pattern="^[a-zA-Z]+$" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
 				if (e.key === "Enter" && e.target.value.length > 0) {
 					playerSubmit(value, currentId);
 					increaseId(currentId);
