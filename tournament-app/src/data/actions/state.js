@@ -84,3 +84,10 @@ export const regenListSize = (value) => ({
 	type: REGEN_LIST_SIZE,
 	value,
 });
+
+export const MAKE_NEXT_ROUND = Symbol("MAKE_NEXT_ROUND");
+
+export const makeNextRound = (value) => ({
+	type: MAKE_NEXT_ROUND,
+	value,
+});

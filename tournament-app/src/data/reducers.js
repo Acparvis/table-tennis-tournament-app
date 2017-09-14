@@ -13,7 +13,8 @@ import {
 	RESET_COMPETITORS,
 	GENERATE_TOURNAMENT,
 	PLAYER_WINS,
-	REGEN_LIST_SIZE
+	REGEN_LIST_SIZE,
+	MAKE_NEXT_ROUND
 } from "./actions/state"
 
 // state functions
@@ -94,6 +95,19 @@ const resetCompetitors = (state, {value}) => state.set("contestants", value);
 //Updates which of the first round pairings has won the game - changes state of result.
 const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
 
+//Pulls winning players from the previous round and puts them in a new array matchup.
+const makeNextRound = (state, { value }) => {
+	let previousRound = value;
+	let newRound = List([Map({
+		player1: "test",
+		player2: "test",
+		result: 0
+	})]);
+	return state.updateIn(["Tournament", "Rounds"],  p => {
+		return p.push(newRound)
+	});
+}
+
 // Reducer switch statement.
 export default(state = initial, action) => {
 	switch (action.type) {
@@ -121,6 +135,8 @@ export default(state = initial, action) => {
 			return playerWins(state, action);
 		case REGEN_LIST_SIZE:
 			return regenListSize(state, action);
+		case MAKE_NEXT_ROUND:
+			return makeNextRound(state, action);
 		default:
 			return state;
 	}

@@ -2,6 +2,8 @@ import {connect} from "react-redux";
 
 import {
 	playerWins,
+	makeNextRound
+
 } from "../data/actions/state";
 
 import TournamentTree from "../components/tournament_tree";
@@ -28,7 +30,8 @@ const mapStateToProps = state => {
 //test comment
 
 const mapDispatchToProps = dispatch => ({
-	playerWin: (value, result) => dispatch(playerWins(value, result))
+	playerWin: (value, result) => dispatch(playerWins(value, result)),
+	takeWinners: (value) => dispatch(makeNextRound(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentTree);

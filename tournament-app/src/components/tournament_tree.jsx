@@ -7,7 +7,8 @@ export default({
 	firstroundmatches,
 	rounds,
 	biPlayer,
-	playerWin
+	playerWin,
+	takeWinners
 }) => (
 	<div>
 		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
@@ -20,9 +21,7 @@ export default({
 					<ul className="no-bullets">
 						{// This loop iterates over each player in the list and creates a list item with the value.
 
-
-
-						rounds.map((round, i) => (
+							rounds.map((round, i) => (
 							<li key={i}>
 								<button className={round.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
 								<p className="vs">
@@ -45,7 +44,7 @@ export default({
 						)
 						: <p></p>}
 				<ul>
-					<button className="generate btn btn-primary">Generate next round</button>
+					<button className="generate btn btn-primary" onClick={ () => takeWinners(rounds.length) }>Generate next round</button>
 				</ul>
 
 				</div>
