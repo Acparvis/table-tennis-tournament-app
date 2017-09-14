@@ -44,7 +44,7 @@ export default({
 						)
 						: <p></p>}
 				<ul>
-					<button className="generate btn btn-primary" onClick={ () => takeWinners(rounds.length) }>Generate next round</button>
+					<button className="generate btn btn-primary" onClick={ () => takeWinners(rounds) }>Generate next round</button>
 				</ul>
 
 				</div>

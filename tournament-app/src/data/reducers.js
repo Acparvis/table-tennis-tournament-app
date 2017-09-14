@@ -90,22 +90,51 @@ const playerDelete = (state, {value}) => state.update('players', p => p.delete(v
 //Resets the competitors list to empty.
 const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
+///////////////////////////////////////////
 /////////// TOURNAMENT REDUCERS ///////////
+///////////////////////////////////////////
 
 //Updates which of the first round pairings has won the game - changes state of result.
 const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
 
 //Pulls winning players from the previous round and puts them in a new array matchup.
 const makeNextRound = (state, { value }) => {
-	let previousRound = value;
-	let newRound = List([Map({
-		player1: "test",
-		player2: "test",
-		result: 0
-	})]);
-	return state.updateIn(["Tournament", "Rounds"],  p => {
-		return p.push(newRound)
-	});
+	let previousRoundIndex = value.size - 1;
+	let winners = [];
+
+
+
+	// map over previous round and get the winners
+	winners = value.map((match, i) => {
+			if (match.get("result") === 1){
+				console.log(match.get("player1"));
+				return Map({player: match.get("player1")});
+			} else if (match.get("result") === 2){
+				console.log(match.get("player2"));
+				Map({player: match.get("player2")});
+			}
+	})
+
+	console.log("winners: ", winners);
+	// let lastRoundWinners =
+
+	// let immutableWinners = fromJS(winners);
+
+	// console.log("immutableWinners: ", immutableWinners);
+
+
+
+
+
+
+	// let newRound = List([Map({
+	// 	player1: "test",
+	// 	player2: "test",
+	// 	result: 0
+	// })]);
+	// return state.updateIn(["Tournament", "Rounds"],  p => {
+	// 	return p.push(winners)
+	// });
 }
 
 // Reducer switch statement.
