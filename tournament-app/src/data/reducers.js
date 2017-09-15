@@ -61,7 +61,7 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 
 	//generate future rounds
 	let futureRounds = [];
-	let matchFrequency = matches.length /2;
+	let matchFrequency = Math.ceil(matches.length /2);
 	console.log("matchFrequency before loop: ", matchFrequency);
 
 
@@ -77,7 +77,12 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 					})
 			console.log("match frequency: ", state.get(["Tournament", "Rounds", "0", ]));
 			}
-			matchFrequency = matchFrequency/2;
+			if (matchFrequency%2 !== 0 && matchFrequency > 1) {
+				matchFrequency += 1
+				matchFrequency = matchFrequency/2;
+			}else {
+				matchFrequency = matchFrequency/2;
+			}
 		futureRounds.push(futureMatches);
 	}
 		futureRounds.unshift(matches);
