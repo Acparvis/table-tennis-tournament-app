@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 	let numberofcontestants = contestantList.size;
 	let matchNumber = state.get("firstroundmatches");
 	let rounds = state.getIn(["Tournament", "Rounds", "0"]);
-	let biPlayer = state.getIn(["Tournament", "Rounds", "1"]);
+	let biPlayer = state.getIn(["Tournament", "ByePlayer"]);
 
 	return {
 		contestants: contestantList,

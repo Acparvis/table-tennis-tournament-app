@@ -63,7 +63,8 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	let immutableBiPlayer = fromJS(biPlayer);
 
 	return Map({
-		Rounds: List([immutableMatches, immutableBiPlayer])
+		Rounds: List([immutableMatches]),
+		ByePlayer: immutableBiPlayer
 	})
 });
 
@@ -103,14 +104,11 @@ const makeNextRound = (state, { value }) => {
 	let winners = [];
 
 
-
 	// map over previous round and get the winners
 	winners = value.map((match, i) => {
 			if (match.get("result") === 1){
-				console.log(match.get("player1"));
 				return Map({player: match.get("player1")});
 			} else if (match.get("result") === 2){
-				console.log(match.get("player2"));
 				return Map({player: match.get("player2")});
 			}
 	})
@@ -136,7 +134,7 @@ const makeNextRound = (state, { value }) => {
 	// 	return p.push(winners)
 	// });
 
-	return state;
+	// return state;
 }
 
 // Reducer switch statement.
