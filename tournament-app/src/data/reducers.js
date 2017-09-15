@@ -59,11 +59,35 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 		}
 	}
 
-	let immutableMatches = fromJS(matches);
+	//generate future rounds
+	let futureRounds = [];
+	let matchFrequency = matches.length /2;
+	console.log("matchFrequency before loop: ", matchFrequency);
+
+
+	console.log("listsize: ", state.get("listsize"));
+	for (var i = 1; i < state.get("numberofrounds"); i++) {
+		let futureMatches = [];
+
+			for (var x = 1; x <= matchFrequency; x++) {
+					futureMatches.push({
+						player1: "TBD",
+						player2: "TBD",
+						result: 0
+					})
+			console.log("match frequency: ", state.get(["Tournament", "Rounds", "0", ]));
+			}
+			matchFrequency = matchFrequency/2;
+		futureRounds.push(futureMatches);
+	}
+		futureRounds.unshift(matches);
+
+	// let immutableMatches = fromJS(matches);
 	let immutableBiPlayer = fromJS(biPlayer);
+	let immutableFutureRounds = fromJS(futureRounds);
 
 	return Map({
-		Rounds: List([immutableMatches]),
+		Rounds: futureRounds,
 		ByePlayer: immutableBiPlayer
 	})
 });
@@ -113,12 +137,12 @@ const makeNextRound = (state, { value }) => {
 			}
 	})
 
-	console.log("winners: ", winners);
-	// let lastRoundWinners =
+	// console.log("winners: ", winners);
 
-	// let immutableWinners = fromJS(winners);
 
-	// console.log("immutableWinners: ", immutableWinners);
+	// push biplayer to array if biplayer isn't blank
+
+
 
 
 

@@ -20,17 +20,10 @@ export default({
 					</div>
 					<ul className="no-bullets">
 						{// This loop iterates over each player in the list and creates a list item with the value.
+							// console.log(rounds)
+						}
 
-							rounds.map((round, i) => (
-							<li key={i}>
-								<button className={round.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
-								<p className="vs">
-									Vs
-								</p>
-								<button className={round.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
-							</li>
-						))
-}
+
 					</ul>
 					{biPlayer.length > 0
 						? (
