@@ -14,7 +14,8 @@ import {
 	GENERATE_TOURNAMENT,
 	PLAYER_WINS,
 	REGEN_LIST_SIZE,
-	MAKE_NEXT_ROUND
+	MAKE_NEXT_ROUND,
+	PUSH_TO_NEXT_ROUND
 } from "./actions/state"
 
 // state functions
@@ -45,27 +46,27 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	let matches = [];
 	let biPlayer = "";
 
-	if (array.length % 2 !== 0) {
-		biPlayer = array.pop()["value"];// Gets the random odd player who will be given a free round.
-	}
+	let matchCounter = 0;
 
 	for (var i = 0; i < array.length; i++) {//creates a Map for each map in the round
 		if (i % 2 === 0) {
 			matches.push({
 				player1: array[i]["value"],
 				player2: array[i + 1]["value"],
-				result: 0
+				result: 0,
+				nextround: 1,
+				matchId: matchCounter
 			})
+			matchCounter++;
 		}
 	}
 
 	//generate future rounds
 	let futureRounds = [];
 	let matchFrequency = Math.ceil(matches.length /2);
-	console.log("matchFrequency before loop: ", matchFrequency);
 
 
-	console.log("listsize: ", state.get("listsize"));
+
 	for (var i = 1; i < state.get("numberofrounds"); i++) {
 		let futureMatches = [];
 
@@ -73,9 +74,11 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 					futureMatches.push({
 						player1: "TBD",
 						player2: "TBD",
-						result: 0
+						result: 0,
+						nextround: i + 1,
+						matchId: matchCounter
 					})
-			console.log("match frequency: ", state.get(["Tournament", "Rounds", "0", ]));
+					matchCounter++;
 			}
 			if (matchFrequency%2 !== 0 && matchFrequency > 1) {
 				matchFrequency += 1
@@ -87,13 +90,12 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	}
 		futureRounds.unshift(matches);
 
+
 	// let immutableMatches = fromJS(matches);
-	let immutableBiPlayer = fromJS(biPlayer);
 	let immutableFutureRounds = fromJS(futureRounds);
 
 	return Map({
-		Rounds: futureRounds,
-		ByePlayer: immutableBiPlayer
+		Rounds: immutableFutureRounds,
 	})
 });
 
@@ -125,7 +127,18 @@ const resetCompetitors = (state, {value}) => state.set("contestants", value);
 ///////////////////////////////////////////
 
 //Updates which of the first round pairings has won the game - changes state of result.
-const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
+const playerWins = (state, { index, result, player, nextRound, matchId }) => state.setIn(["Tournament", "Rounds", "0", index, "result"], result);
+
+
+const pushToNextRound = (state, {index, result, player, nextRound, matchId}) => {
+	if (matchId % 2 === 0) {
+		return state.setIn(["Tournament", "Rounds", nextRound, index, "player1"], player);
+	} else {
+		let oddIndex = index -1;
+		return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
+	}
+}
+
 
 //Pulls winning players from the previous round and puts them in a new array matchup.
 const makeNextRound = (state, { value }) => {
@@ -195,6 +208,8 @@ export default(state = initial, action) => {
 			return regenListSize(state, action);
 		case MAKE_NEXT_ROUND:
 			return makeNextRound(state, action);
+		case PUSH_TO_NEXT_ROUND:
+			return pushToNextRound(state, action);
 		default:
 			return state;
 	}

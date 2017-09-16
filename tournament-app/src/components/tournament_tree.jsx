@@ -8,7 +8,8 @@ export default({
 	rounds,
 	biPlayer,
 	playerWin,
-	takeWinners
+	takeWinners,
+	playerPush
 }) => (
 	<div>
 		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
@@ -18,28 +19,26 @@ export default({
 					<div className="contain">
 						<h1>Tournament</h1>
 					</div>
-					<ul className="no-bullets">
-						{// This loop iterates over each player in the list and creates a list item with the value.
-							// console.log(rounds)
+					<div className="tournament-container">
+						{
+							//loop over rounds, taking each array.
+							rounds.map((round, i) => (
+								<ul key={ i } className="no-bullets">{
+								round.map((match, x) => (
+									<li key={match.get("matchId")}>
+										<button className={match.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(match.get("matchId"), 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(match.get("matchId"), 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
+										<p className="vs">
+											Vs
+										</p>
+										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(match.get("matchId"), 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } onClick={ () => playerPush(match.get("matchId"), 1, match.get("player2"), match.get("nextround"), match.get("matchId")) } >{match.get("player2")}</button>
+									</li>
+								))
+							}	</ul>
+							))
+							// generate dom objects for each match within the array, second loop
+
 						}
-
-
-					</ul>
-					{biPlayer.length > 0
-						? (
-							<ul className="no-bullets">
-								<li>
-									<button className="player1 btn btn-warning">{biPlayer}
-									</button>
-									<br/>Free pass to next round!
-								</li>
-							</ul>
-						)
-						: <p></p>}
-				<ul>
-					<button className="generate btn btn-primary" onClick={ () => takeWinners(rounds) }>Generate next round</button>
-				</ul>
-
+					</div>
 				</div>
 			)
 			: <p></p>}
