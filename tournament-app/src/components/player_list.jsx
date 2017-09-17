@@ -15,7 +15,9 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					return true;
 				}
 			};
-
+			if (shuffledImmutableArray.size % 4 !== 0){//Checks the number of players being put into the tournament, and rejects it if the number is innapropriate.
+				alert("Please enter either 4, 8 or 16 players!");
+			} else {
 			// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
 			if (buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
@@ -46,7 +48,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					updateListSize(player.size);
 				}
 			}
-		} } >Generate Tournament!!!</button>
+		}} } >Generate Tournament!!!</button>
 
 		</div>
 		<ul className="contestant-list">
