@@ -25,12 +25,12 @@ export default({
 							rounds.map((round, i) => (
 								<ul key={ i } className="no-bullets">{
 								round.map((match, x) => (
-									<li key={match.get("matchId")}>
-										<button className={match.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(match.get("matchId"), 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(match.get("matchId"), 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
+									<li key={x}>
+										<button className={match.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
 										<p className="vs">
 											Vs
 										</p>
-										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(match.get("matchId"), 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } onClick={ () => playerPush(match.get("matchId"), 1, match.get("player2"), match.get("nextround"), match.get("matchId")) } >{match.get("player2")}</button>
+										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onMouseDown={ () => playerWin(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } onClick={ () => playerPush(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } >{match.get("player2")}</button>
 									</li>
 								))
 							}	</ul>

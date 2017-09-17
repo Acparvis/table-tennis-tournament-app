@@ -127,14 +127,20 @@ const resetCompetitors = (state, {value}) => state.set("contestants", value);
 ///////////////////////////////////////////
 
 //Updates which of the first round pairings has won the game - changes state of result.
-const playerWins = (state, { index, result, player, nextRound, matchId }) => state.setIn(["Tournament", "Rounds", "0", index, "result"], result);
+const playerWins = (state, { index, result, player, nextRound, matchId }) => {
+	let thisRound = nextRound - 1;
+	console.log("index: ", index)
+	console.log("this round: " ,thisRound)
+	return state.setIn(["Tournament", "Rounds", thisRound, index, "result"], result);
+};
 
 
 const pushToNextRound = (state, {index, result, player, nextRound, matchId}) => {
 	if (matchId % 2 === 0) {
-		return state.setIn(["Tournament", "Rounds", nextRound, index, "player1"], player);
+		let evenIndex = index / 2;
+		return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);
 	} else {
-		let oddIndex = index -1;
+		let oddIndex = (index - 1) / 2;
 		return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
 	}
 }
