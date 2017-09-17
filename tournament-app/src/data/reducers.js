@@ -13,7 +13,9 @@ import {
 	RESET_COMPETITORS,
 	GENERATE_TOURNAMENT,
 	PLAYER_WINS,
-	REGEN_LIST_SIZE
+	REGEN_LIST_SIZE,
+	MAKE_NEXT_ROUND,
+	PUSH_TO_NEXT_ROUND
 } from "./actions/state"
 
 // state functions
@@ -44,25 +46,64 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	let matches = [];
 	let biPlayer = "";
 
-	if (array.length % 2 !== 0) {
-		biPlayer = array.pop()["value"];// Gets the random odd player who will be given a free round.
-	}
+	let matchCounter = 0;
 
 	for (var i = 0; i < array.length; i++) {//creates a Map for each map in the round
 		if (i % 2 === 0) {
 			matches.push({
 				player1: array[i]["value"],
 				player2: array[i + 1]["value"],
-				result: 0
+				result: 0,
+				nextround: 1,
+				matchId: matchCounter
 			})
+			matchCounter++;
 		}
 	}
 
-	let immutableMatches = fromJS(matches);
-	let immutableBiPlayer = fromJS(biPlayer);
+	//generate future rounds
+	let futureRounds = [];
+	let matchFrequency = Math.ceil(matches.length /2);
+
+
+
+	for (var i = 1; i < state.get("numberofrounds"); i++) {
+		let futureMatches = [];
+
+			for (var x = 1; x <= matchFrequency; x++) {
+					futureMatches.push({
+						player1: "TBD",
+						player2: "TBD",
+						result: 0,
+						nextround: i + 1,
+						matchId: matchCounter
+					})
+					matchCounter++;
+			}
+			if (matchFrequency%2 !== 0 && matchFrequency > 1) {
+				matchFrequency += 1
+				matchFrequency = matchFrequency/2;
+			}else {
+				matchFrequency = matchFrequency/2;
+			}
+		futureRounds.push(futureMatches);
+	}
+		futureRounds.unshift(matches);
+
+		futureRounds.push([{
+			player1: "Winner",
+			player2: "none",
+			result: 3,
+			matchId: matchCounter
+		}]
+		)
+
+
+	// let immutableMatches = fromJS(matches);
+	let immutableFutureRounds = fromJS(futureRounds);
 
 	return Map({
-		Rounds: List([immutableMatches, immutableBiPlayer])
+		Rounds: immutableFutureRounds,
 	})
 });
 
@@ -89,10 +130,68 @@ const playerDelete = (state, {value}) => state.update('players', p => p.delete(v
 //Resets the competitors list to empty.
 const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
+///////////////////////////////////////////
 /////////// TOURNAMENT REDUCERS ///////////
+///////////////////////////////////////////
 
 //Updates which of the first round pairings has won the game - changes state of result.
-const playerWins = (state, { value, result }) => state.setIn(["Tournament", "Rounds", "0", value, "result"], result);
+const playerWins = (state, { index, result, player, nextRound, matchId }) => {
+	let thisRound = nextRound - 1;
+	console.log("index: ", index)
+	console.log("this round: " ,thisRound)
+	return state.setIn(["Tournament", "Rounds", thisRound, index, "result"], result);
+};
+
+
+const pushToNextRound = (state, {index, result, player, nextRound, matchId}) => {
+	if (matchId % 2 === 0) {
+		let evenIndex = index / 2;
+		return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);
+	} else {
+		let oddIndex = (index - 1) / 2;
+		return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
+	}
+}
+
+
+//Pulls winning players from the previous round and puts them in a new array matchup.
+const makeNextRound = (state, { value }) => {
+	let previousRoundIndex = value.size - 1;
+	let winners = [];
+
+
+	// map over previous round and get the winners
+	winners = value.map((match, i) => {
+			if (match.get("result") === 1){
+				return Map({player: match.get("player1")});
+			} else if (match.get("result") === 2){
+				return Map({player: match.get("player2")});
+			}
+	})
+
+	// console.log("winners: ", winners);
+
+
+	// push biplayer to array if biplayer isn't blank
+
+
+
+
+
+
+
+
+	// let newRound = List([Map({
+	// 	player1: "test",
+	// 	player2: "test",
+	// 	result: 0
+	// })]);
+	// return state.updateIn(["Tournament", "Rounds"],  p => {
+	// 	return p.push(winners)
+	// });
+
+	// return state;
+}
 
 // Reducer switch statement.
 export default(state = initial, action) => {
@@ -121,6 +220,10 @@ export default(state = initial, action) => {
 			return playerWins(state, action);
 		case REGEN_LIST_SIZE:
 			return regenListSize(state, action);
+		case MAKE_NEXT_ROUND:
+			return makeNextRound(state, action);
+		case PUSH_TO_NEXT_ROUND:
+			return pushToNextRound(state, action);
 		default:
 			return state;
 	}

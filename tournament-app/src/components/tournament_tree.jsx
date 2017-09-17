@@ -7,7 +7,9 @@ export default({
 	firstroundmatches,
 	rounds,
 	biPlayer,
-	playerWin
+	playerWin,
+	takeWinners,
+	playerPush
 }) => (
 	<div>
 		{/* conditional rendering of tournament based on the number of players in the contstants List.  */}
@@ -17,37 +19,29 @@ export default({
 					<div className="contain">
 						<h1>Tournament</h1>
 					</div>
-					<ul className="no-bullets">
-						{// This loop iterates over each player in the list and creates a list item with the value.
+					<div className="tournament-container">
+						{
+							//loop over rounds, taking each array.
+							rounds.map((round, i) => (
+								<ul key={ i } className="no-bullets round">{
+								round.map((match, x) => (
+									<li key={x}>
+										<button className={match.get("result") === 1 || match.get("result") === 3 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
 
+									<container className={match.get("player2") === "none" ? "no-display" : ""}>
+										<p className="vs">
+											Vs
+										</p>
+										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onMouseDown={ () => playerWin(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } onClick={ () => playerPush(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } >{match.get("player2")}</button>
+									</container>
+									</li>
+								))
+							}	</ul>
+							))
+							// generate dom objects for each match within the array, second loop
 
-
-						rounds.map((round, i) => (
-							<li key={i}>
-								<button className={round.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onClick={ () => playerWin(i, 1) }>{round.get("player1")}</button>
-								<p className="vs">
-									Vs
-								</p>
-								<button className={round.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onClick={ () => playerWin(i, 2) }>{round.get("player2")}</button>
-							</li>
-						))
-}
-					</ul>
-					{biPlayer.length > 0
-						? (
-							<ul className="no-bullets">
-								<li>
-									<button className="player1 btn btn-warning">{biPlayer}
-									</button>
-									<br/>Free pass to next round!
-								</li>
-							</ul>
-						)
-						: <p></p>}
-				<ul>
-					<button className="generate btn btn-primary">Generate next round</button>
-				</ul>
-
+						}
+					</div>
 				</div>
 			)
 			: <p></p>}

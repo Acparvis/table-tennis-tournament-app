@@ -2,6 +2,9 @@ import {connect} from "react-redux";
 
 import {
 	playerWins,
+	makeNextRound,
+	pushToNextRound
+
 } from "../data/actions/state";
 
 import TournamentTree from "../components/tournament_tree";
@@ -11,8 +14,8 @@ const mapStateToProps = state => {
 	let roundNumber = state.get("numberofrounds");
 	let numberofcontestants = contestantList.size;
 	let matchNumber = state.get("firstroundmatches");
-	let rounds = state.getIn(["Tournament", "Rounds", "0"]);
-	let biPlayer = state.getIn(["Tournament", "Rounds", "1"]);
+	let rounds = state.getIn(["Tournament", "Rounds"]);
+	let biPlayer = state.getIn(["Tournament", "ByePlayer"]);
 
 	return {
 		contestants: contestantList,
@@ -28,7 +31,9 @@ const mapStateToProps = state => {
 //test comment
 
 const mapDispatchToProps = dispatch => ({
-	playerWin: (value, result) => dispatch(playerWins(value, result))
+	playerWin: (index, result, player, nextRound, matchId) => dispatch(playerWins(index, result, player, nextRound, matchId)),
+	playerPush: (index, result, player, nextRound, matchId) => dispatch(pushToNextRound(index, result, player, nextRound, matchId)),
+	takeWinners: (value) => dispatch(makeNextRound(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TournamentTree);

@@ -15,7 +15,9 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					return true;
 				}
 			};
-
+			if (shuffledImmutableArray.size % 4 !== 0){//Checks the number of players being put into the tournament, and rejects it if the number is innapropriate.
+				alert("Please enter either 4, 8 or 16 players!");
+			} else {
 			// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
 			if (buttonExecute(player) && contestantsArr.length > 0) {
 				if (window.confirm("Overwrite Current tournament")) {
@@ -29,7 +31,6 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				makeTournament(shuffledImmutableArray, firstroundmatches);
 				// Call function that updates the listsize property
 				updateListSize(player.size);
-
 				}
 			} else if (buttonExecute(player)) {
 				makeTree(shuffledImmutableArray.size);
@@ -45,13 +46,12 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					makeTree(player.size);
 					makeTournament(player, 0);
 					updateListSize(player.size);
-
 				}
 			}
-		} } >Generate Tournament!!!</button>
+		}} } >Generate Tournament!!!</button>
 
 		</div>
-		<ul className="">
+		<ul className="contestant-list">
 			{ player.map(( player, i ) => (
 			<div key={ i } className="row">
 				<button className="delete btn btn-warning player" onClick={ () => {
