@@ -17,14 +17,14 @@ export default({
 		<div className="row contain">
 
 			<input id="playerInput" className="form-control input-field player-input" type="text" pattern="^[a-zA-Z]+$" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
-				if (e.key === "Enter" && e.target.value.length > 0) {
+				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {
 					playerSubmit(value, currentId);
 					increaseId(currentId);
 					clearInput("");
 				}
 			}}/>
 			<button className="btn" onClick={() => {
-				if (value.length > 0) {
+				if (value.length > 0 && value !== "none") {
 					playerSubmit(value, currentId);
 					increaseId(currentId);
 					clearInput("");
