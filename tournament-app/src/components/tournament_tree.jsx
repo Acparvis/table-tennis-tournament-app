@@ -23,14 +23,17 @@ export default({
 						{
 							//loop over rounds, taking each array.
 							rounds.map((round, i) => (
-								<ul key={ i } className="no-bullets">{
+								<ul key={ i } className="no-bullets round">{
 								round.map((match, x) => (
 									<li key={x}>
-										<button className={match.get("result") === 1 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
+										<button className={match.get("result") === 1 || match.get("result") === 3 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
+
+									<container className={match.get("player2") === "none" ? "no-display" : ""}>
 										<p className="vs">
 											Vs
 										</p>
 										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onMouseDown={ () => playerWin(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } onClick={ () => playerPush(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId")) } >{match.get("player2")}</button>
+									</container>
 									</li>
 								))
 							}	</ul>

@@ -88,6 +88,10 @@
 	width: 15em;
 }
 
+.no-display {
+	display: none;
+}
+
 .player-input {
 	width: 30%;
 }

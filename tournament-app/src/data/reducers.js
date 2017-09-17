@@ -90,6 +90,14 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	}
 		futureRounds.unshift(matches);
 
+		futureRounds.push([{
+			player1: "Winner",
+			player2: "none",
+			result: 3,
+			matchId: matchCounter
+		}]
+		)
+
 
 	// let immutableMatches = fromJS(matches);
 	let immutableFutureRounds = fromJS(futureRounds);
