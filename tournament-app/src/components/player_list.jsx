@@ -29,7 +29,6 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				makeTournament(shuffledImmutableArray, firstroundmatches);
 				// Call function that updates the listsize property
 				updateListSize(player.size);
-
 				}
 			} else if (buttonExecute(player)) {
 				makeTree(shuffledImmutableArray.size);
@@ -45,13 +44,12 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					makeTree(player.size);
 					makeTournament(player, 0);
 					updateListSize(player.size);
-
 				}
 			}
 		} } >Generate Tournament!!!</button>
 
 		</div>
-		<ul className="">
+		<ul className="contestant-list">
 			{ player.map(( player, i ) => (
 			<div key={ i } className="row">
 				<button className="delete btn btn-warning player" onClick={ () => {
