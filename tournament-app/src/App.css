@@ -141,3 +141,12 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 }
+
+.player-number {
+	margin: 0px;
+	margin-left: 1%;
+}
+
+.center-alignment {
+	align-items: center;
+}

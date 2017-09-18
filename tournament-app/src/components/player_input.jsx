@@ -12,9 +12,9 @@ export default({
 }) => (
 	<div className="animated fadeIn">
 		<div className="contain">
-			<h1 className="">Enter Players</h1>
+			<br/><h1 className="">Enter Players</h1>
 		</div>
-		<div className="row contain">
+		<div className="row contain center-alignment">
 
 			<input id="playerInput" className="form-control input-field player-input" type="text" pattern="^[a-zA-Z]+$" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
 				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {
@@ -30,6 +30,7 @@ export default({
 					clearInput("");
 				}
 			}}>Enter</button>
+			<p className="player-number">Number of players : { currentId }</p>
 		</div>
 	</div>
 );
