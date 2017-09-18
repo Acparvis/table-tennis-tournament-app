@@ -136,26 +136,34 @@ const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
 //Updates which of the first round pairings has won the game - changes state of result.
 const playerWins = (state, { index, result, player, nextRound, matchId }) => {
-	let thisRound = nextRound - 1;
-	console.log("index: ", index)
-	console.log("this round: " ,thisRound)
-	return state.setIn(["Tournament", "Rounds", thisRound, index, "result"], result);
+	if (player !== "TBD") {// disables button if TBD is in it
+		let thisRound = nextRound - 1;
+		console.log("index: ", index)
+		console.log("this round: " ,thisRound)
+		return state.setIn(["Tournament", "Rounds", thisRound, index, "result"], result);
+	} else {
+		return state;
+	}
 };
 
 
 const pushToNextRound = (state, {index, result, player, nextRound, matchId}) => {
-	if (matchId % 2 === 0) {
-		let evenIndex = index / 2;
-		return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);
+	if (player !== "TBD") {// disables button if TBD is in it
+		if (matchId % 2 === 0) {
+			let evenIndex = index / 2;
+			return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);
+		} else {
+			let oddIndex = (index - 1) / 2;
+			return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
+		}
 	} else {
-		let oddIndex = (index - 1) / 2;
-		return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
+		return state;
 	}
 }
 
 
 //Pulls winning players from the previous round and puts them in a new array matchup.
-const makeNextRound = (state, { value }) => {
+const makeNextRound = (state, { value }) => {// remove this and remove the subsequent trail form the other files.
 	let previousRoundIndex = value.size - 1;
 	let winners = [];
 

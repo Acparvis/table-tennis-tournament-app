@@ -27,7 +27,12 @@ export default({
 								round.map((match, x) => (
 									<li key={x}>
 										<button className={match.get("result") === 1 || match.get("result") === 3 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId")) } >{match.get("player1")}</button>
-
+										
+										
+										
+										{/* if statement that checks if there is an odd number of matches in the round. If there is, it creates a bi player in the next array */}
+										
+										
 									<container className={match.get("player2") === "none" ? "no-display" : ""}>
 										<p className="vs">
 											Vs
