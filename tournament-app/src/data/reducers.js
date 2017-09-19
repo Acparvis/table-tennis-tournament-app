@@ -135,8 +135,8 @@ const resetCompetitors = (state, {value}) => state.set("contestants", value);
 ///////////////////////////////////////////
 
 //Updates which of the first round pairings has won the game - changes state of result.
-const playerWins = (state, { index, result, player, nextRound, matchId }) => {
-	if (player !== "TBD") {// disables button if TBD is in it
+const playerWins = (state, { index, result, player, nextRound, matchId, otherPlayer }) => {
+	if (player !== "TBD" && otherPlayer !== "TBD") {// disables button if TBD is in the round.
 		let thisRound = nextRound - 1;
 		console.log("index: ", index)
 		console.log("this round: " ,thisRound)
@@ -147,7 +147,7 @@ const playerWins = (state, { index, result, player, nextRound, matchId }) => {
 };
 
 
-const pushToNextRound = (state, {index, result, player, nextRound, matchId, otherPlayer}) => {
+const pushToNextRound = (state, {index, result, player, nextRound, matchId, otherPlayer }) => {
 	if (player !== "TBD" && otherPlayer !== "TBD") {// disables button if TBD is in the round.
 		if (matchId % 2 === 0) {
 			let evenIndex = index / 2;

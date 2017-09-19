@@ -72,13 +72,14 @@ export const generateTournament = (value, rounds) => ({
 
 export const PLAYER_WINS = Symbol("PLAYER_WINS");
 
-export const playerWins = (index, result, player, nextRound, matchId) => ({
+export const playerWins = (index, result, player, nextRound, matchId, otherPlayer) => ({
 	type: PLAYER_WINS,
 	index,
 	result,
 	player,
 	nextRound,
 	matchId,
+	otherPlayer,
 });
 
 export const REGEN_LIST_SIZE = Symbol("REGEN_LIST_SIZE");
