@@ -14,11 +14,13 @@ import PlayerInput from "../components/player_input";
 const mapStateToProps = state => {
 	let name = state.get("value");
 	let currentId = state.get("listsize");
+	let listPlayers = state.get("players")
 
 
 	return {
 		value: name,
-		currentId: currentId
+		currentId: currentId,
+		listPlayers: listPlayers
 	}
 };
 

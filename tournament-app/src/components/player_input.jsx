@@ -8,7 +8,8 @@ export default({
 	playerSubmit,
 	currentId,
 	increaseId,
-	clearInput
+	clearInput,
+	listPlayers
 }) => (
 	<div className="animated fadeIn">
 		<div className="contain">
@@ -16,7 +17,7 @@ export default({
 		</div>
 		<div className="row contain center-alignment">
 
-			<input id="playerInput" className="form-control input-field player-input" type="text" pattern="^[a-zA-Z]+$" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
+			<input id="playerInput" className="form-control input-field player-input offset-md-1" type="text" pattern="^[a-zA-Z]+$" maxLength="25" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
 				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {
 					playerSubmit(value, currentId);
 					increaseId(currentId);
@@ -30,7 +31,9 @@ export default({
 					clearInput("");
 				}
 			}}>Enter</button>
-			<p className="player-number">Number of players : { currentId }</p>
+			<p className="player-number">Players : { listPlayers.size }</p>
 		</div>
 	</div>
 );
+
+//componentDidChange -  increase 
