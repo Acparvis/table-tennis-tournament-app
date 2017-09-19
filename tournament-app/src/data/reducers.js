@@ -147,8 +147,8 @@ const playerWins = (state, { index, result, player, nextRound, matchId }) => {
 };
 
 
-const pushToNextRound = (state, {index, result, player, nextRound, matchId}) => {
-	if (player !== "TBD") {// disables button if TBD is in it
+const pushToNextRound = (state, {index, result, player, nextRound, matchId, otherPlayer}) => {
+	if (player !== "TBD" && otherPlayer !== "TBD") {// disables button if TBD is in the round.
 		if (matchId % 2 === 0) {
 			let evenIndex = index / 2;
 			return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);

@@ -32,7 +32,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 	playerWin: (index, result, player, nextRound, matchId) => dispatch(playerWins(index, result, player, nextRound, matchId)),
-	playerPush: (index, result, player, nextRound, matchId) => dispatch(pushToNextRound(index, result, player, nextRound, matchId)),
+	playerPush: (index, result, player, nextRound, matchId, otherPlayer) => dispatch(pushToNextRound(index, result, player, nextRound, matchId, otherPlayer)),
 	takeWinners: (value) => dispatch(makeNextRound(value))
 });
 

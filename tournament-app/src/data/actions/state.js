@@ -97,11 +97,12 @@ export const makeNextRound = (value) => ({
 
 export const PUSH_TO_NEXT_ROUND = Symbol("PUSH_TO_NEXT_ROUND");
 
-export const pushToNextRound = (index, result, player, nextRound, matchId) => ({
+export const pushToNextRound = (index, result, player, nextRound, matchId, otherPlayer) => ({
 	type: PUSH_TO_NEXT_ROUND,
 	index,
 	result,
 	player,
 	nextRound,
 	matchId,
+	otherPlayer,
 });
