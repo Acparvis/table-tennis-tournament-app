@@ -12,7 +12,7 @@ export default({
 	listPlayers
 }) => (
 	<div className="animated fadeIn">
-		<div className="contain">
+		<div className="contain input-container">
 			<br/><h1 className="">Enter Players</h1>
 		</div>
 		<div className="row contain center-alignment">
