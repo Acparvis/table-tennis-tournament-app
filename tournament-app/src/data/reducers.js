@@ -1,5 +1,5 @@
 import initial from "./initial";
-import {Map, List, fromJS} from 'immutable';
+import {Map, fromJS} from 'immutable';
 
 import {
 	UPDATE_TEXT,
@@ -14,11 +14,8 @@ import {
 	GENERATE_TOURNAMENT,
 	PLAYER_WINS,
 	REGEN_LIST_SIZE,
-	MAKE_NEXT_ROUND,
 	PUSH_TO_NEXT_ROUND
 } from "./actions/state"
-
-// state functions
 
 // Updates the value state with whatever is in the input box.
 const updateText = (state, {value}) => state.set("value", value);
@@ -44,8 +41,6 @@ const updateContestants = (state, {value}) => state.set("contestants", value);
 const generateTournament = (state, {value, rounds}) => state.update('Tournament', (p) => {
 	let array = value.toJS();
 	let matches = [];
-	let biPlayer = "";
-
 	let matchCounter = 0;
 
 	for (var i = 0; i < array.length; i++) {//creates a Map for each map in the round
@@ -64,8 +59,6 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	//generate future rounds
 	let futureRounds = [];
 	let matchFrequency = Math.ceil(matches.length /2);
-
-
 
 	for (var i = 1; i < state.get("numberofrounds"); i++) {
 		let futureMatches = [];
@@ -88,9 +81,9 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 			}
 		futureRounds.push(futureMatches);
 	}
-		futureRounds.unshift(matches);
+		futureRounds.unshift(matches);//Adds the first round of populated matches to the tournament data structure.
 
-		futureRounds.push([{
+		futureRounds.push([{//Adds the winner 'match' to the end of the tournament structure.
 			player1: "Winner",
 			player2: "none",
 			result: 3,
@@ -98,8 +91,6 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 		}]
 		)
 
-
-	// let immutableMatches = fromJS(matches);
 	let immutableFutureRounds = fromJS(futureRounds);
 
 	return Map({
@@ -111,7 +102,6 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 const defineRounds = (state, {value}) => state.set("numberofrounds", Math.ceil(Math.sqrt(value)));
 
 // // Works out how many matches will be in the first round of the tournament. If the player number is uneven, we round up to provide a partial match, later on we can use this match as a bi match, thereby providing a random seed in the tournament if the player number is odd.
-// Further on we can also use this code to generate subsequent rounds.
 const firstRoundMatches = (state, {value}) => {
 	if (value % 2 === 0) {
 		value = value / 2;
@@ -130,77 +120,33 @@ const playerDelete = (state, {value}) => state.update('players', p => p.delete(v
 //Resets the competitors list to empty.
 const resetCompetitors = (state, {value}) => state.set("contestants", value);
 
-///////////////////////////////////////////
-/////////// TOURNAMENT REDUCERS ///////////
-///////////////////////////////////////////
+
+// TOURNAMENT REDUCERS //
+
 
 //Updates which of the first round pairings has won the game - changes state of result.
 const playerWins = (state, { index, result, player, nextRound, matchId, otherPlayer }) => {
 	if (player !== "TBD" && otherPlayer !== "TBD") {// disables button if TBD is in the round.
 		let thisRound = nextRound - 1;
-		console.log("index: ", index)
-		console.log("this round: " ,thisRound)
 		return state.setIn(["Tournament", "Rounds", thisRound, index, "result"], result);
 	} else {
 		return state;
 	}
 };
 
-
 const pushToNextRound = (state, {index, result, player, nextRound, matchId, otherPlayer }) => {
 	if (player !== "TBD" && otherPlayer !== "TBD") {// disables button if TBD is in the round.
 		if (matchId % 2 === 0) {
-			let evenIndex = index / 2;
+			let evenIndex = index / 2;//even indexes correspond to their half in the next round.
 			return state.setIn(["Tournament", "Rounds", nextRound, evenIndex, "player1"], player);
 		} else {
-			let oddIndex = (index - 1) / 2;
+			let oddIndex = (index - 1) / 2;//this makes the odd index correspond to the same match as the above even index.
 			return state.setIn(["Tournament", "Rounds", nextRound, oddIndex, "player2"], player);
 		}
 	} else {
 		return state;
 	}
 }
-
-
-//Pulls winning players from the previous round and puts them in a new array matchup.
-const makeNextRound = (state, { value }) => {// remove this and remove the subsequent trail form the other files.
-	let previousRoundIndex = value.size - 1;
-	let winners = [];
-
-
-	// map over previous round and get the winners
-	winners = value.map((match, i) => {
-			if (match.get("result") === 1){
-				return Map({player: match.get("player1")});
-			} else if (match.get("result") === 2){
-				return Map({player: match.get("player2")});
-			}
-	})
-
-	// console.log("winners: ", winners);
-
-
-	// push biplayer to array if biplayer isn't blank
-
-
-
-
-
-
-
-
-	// let newRound = List([Map({
-	// 	player1: "test",
-	// 	player2: "test",
-	// 	result: 0
-	// })]);
-	// return state.updateIn(["Tournament", "Rounds"],  p => {
-	// 	return p.push(winners)
-	// });
-
-	// return state;
-}
-
 // Reducer switch statement.
 export default(state = initial, action) => {
 	switch (action.type) {
@@ -228,8 +174,6 @@ export default(state = initial, action) => {
 			return playerWins(state, action);
 		case REGEN_LIST_SIZE:
 			return regenListSize(state, action);
-		case MAKE_NEXT_ROUND:
-			return makeNextRound(state, action);
 		case PUSH_TO_NEXT_ROUND:
 			return pushToNextRound(state, action);
 		default:

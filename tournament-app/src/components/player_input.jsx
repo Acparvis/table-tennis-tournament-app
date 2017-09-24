@@ -17,6 +17,7 @@ export default({
 		</div>
 		<div className="row contain center-alignment">
 
+			{/* Player input field */}
 			<input id="playerInput" className="form-control input-field player-input offset-md-1" type="text" pattern="^[a-zA-Z]+$" maxLength="25" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
 				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {
 					playerSubmit(value, currentId);
@@ -36,4 +37,4 @@ export default({
 	</div>
 );
 
-//componentDidChange -  increase 
+//componentDidChange -  increase

@@ -89,13 +89,6 @@ export const regenListSize = (value) => ({
 	value,
 });
 
-export const MAKE_NEXT_ROUND = Symbol("MAKE_NEXT_ROUND");
-
-export const makeNextRound = (value) => ({
-	type: MAKE_NEXT_ROUND,
-	value,
-});
-
 export const PUSH_TO_NEXT_ROUND = Symbol("PUSH_TO_NEXT_ROUND");
 
 export const pushToNextRound = (index, result, player, nextRound, matchId, otherPlayer) => ({

@@ -4,9 +4,9 @@ import {  } from "immutable";
 
 export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumber, removePlayer, currentId, clearCompetitors, contestants, makeTournament, firstroundmatches, updateListSize }) => (
 	<div className="container animated fadeIn">
-		
+
 		<div className="contain">
-		
+
 		<button className="btn btn-success start" onClick={ () => {
 			let shuffledImmutableArray = player.sortBy(Math.random);
 
@@ -17,8 +17,8 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 					return true;
 				}
 			};
-			
-			
+
+
 			if ((shuffledImmutableArray.size % 4) % 4 !== 0 || shuffledImmutableArray.size === 12 || shuffledImmutableArray.size > 16){//Checks the number of players being put into the tournament, and rejects it if the number is innapropriate.
 				alert("Please enter either 4, 8 or 16 players!");
 			} else {
@@ -43,8 +43,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				makeTournament(shuffledImmutableArray, firstroundmatches);
 				updateListSize(player.size);
 			} else if (!buttonExecute(player) && contestantsArr.length > 0) {
-				if (window.confirm("Overwrite Current tournament")) {
-					console.log("THIS ONE");
+				if (window.confirm("Clear Current tournament")) {
 					clearCompetitors(player);
 					matchNumber(player.size);
 					makeTree(player.size);
@@ -62,7 +61,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 			{ player.map(( player, i ) => (
 			<div key={ i } className="row">
 				<button className="delete btn btn-warning player" onClick={ () => {
-							removePlayer(i);
+							removePlayer(i);//removes player from player list.
 						} }>
 						Delete
 				</button>

@@ -21,30 +21,35 @@ export default({
 					</div>
 					<div className="tournament-container">
 						{
-							//loop over rounds, taking each array.
+							//loop over rounds, taking each array of matches.
 							rounds.map((round, i) => (
 								<ul key={ i } className="no-bullets round">{
-								round.map((match, x) => (
+								round.map((match, x) => (//loop over each match printing out the contestants.
 									<li key={x}>
-										<button className={match.get("result") === 1 || match.get("result") === 3 ? "player1 btn btn-warning" : 'player1 btn' } onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"), match.get("player2"))  } onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"), match.get("player2")) } >{match.get("player1")}</button>
-										
-										
-										
-										{/* if statement that checks if there is an odd number of matches in the round. If there is, it creates a bi player in the next array */}
-										
-										
-									<container className={match.get("player2") === "none" ? "no-display" : ""}>
-										<p className="vs">
-											Vs
-										</p>
-										<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' } onMouseDown={ () => playerWin(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId"), match.get("player1")) } onClick={ () => playerPush(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId"), match.get("player1")) } >{match.get("player2")}</button>
-									</container>
+										<button className={match.get("result") === 1 || match.get("result") === 3 ? "player1 btn btn-warning" : 'player1 btn' }
+
+											//Mark player as won.
+											onMouseDown={ () => playerWin(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"), match.get("player2"))  }
+											//Push player name to next round.
+											onClick={ () => playerPush(x, 1, match.get("player1"), match.get("nextround"), match.get("matchId"), match.get("player2")) } >
+
+											{match.get("player1")}
+										</button>
+										{/* Conditional rendering for second player. If "none" is the value, then the bracket is the winner */}
+										<container className={match.get("player2") === "none" ? "no-display" : "" }>
+											<p className="vs"> Vs </p>
+											<button className={match.get("result") === 2 ? "player2 btn btn-warning" : 'player2 btn' }
+
+												onMouseDown={ () => playerWin(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId"), match.get("player1")) }
+												onClick={ () => playerPush(x, 2, match.get("player2"), match.get("nextround"), match.get("matchId"), match.get("player1")) } >
+
+												{match.get("player2")}
+											</button>
+										</container>
 									</li>
 								))
 							}	</ul>
 							))
-							// generate dom objects for each match within the array, second loop
-
 						}
 					</div>
 				</div>
