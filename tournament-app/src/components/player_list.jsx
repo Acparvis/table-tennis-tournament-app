@@ -12,7 +12,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 
 			let contestantsArr = contestants.toArray();
 
-			const buttonExecute = (arr) => {
+			const buttonExecute = (arr) => {//Checks the player array is greater than 1.
 				if (arr.size > 0) {
 					return true;
 				}
@@ -23,7 +23,7 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				alert("Please enter either 4, 8 or 16 players!");
 			} else {
 			// if statement tells if there is currently a tournament to be overwritten. If there is, it double checks with a confirm window to give the user a chance - incase of accidental button pressing.
-			if (buttonExecute(player) && contestantsArr.length > 0) {
+			if (buttonExecute(player) && contestantsArr.length > 0) { //There is a already a torunament generated AND there are players that will overwrite the existing tournament.
 				if (window.confirm("Overwrite Current tournament")) {
 				// Call function that will trigger the number of rounds to be generated.
 				makeTree(shuffledImmutableArray.size);
@@ -36,13 +36,13 @@ export default ({ player, onClick, onChange, makeTree, createMatchup, matchNumbe
 				// Call function that updates the listsize property
 				updateListSize(player.size);
 				}
-			} else if (buttonExecute(player)) {
+			} else if (buttonExecute(player)) { //No current tournament, but there are contestants waiting to be entered.
 				makeTree(shuffledImmutableArray.size);
 				matchNumber(shuffledImmutableArray.size);
 				createMatchup(shuffledImmutableArray);
 				makeTournament(shuffledImmutableArray, firstroundmatches);
 				updateListSize(player.size);
-			} else if (!buttonExecute(player) && contestantsArr.length > 0) {
+			} else if (!buttonExecute(player) && contestantsArr.length > 0) {//When the player list is blank but there is still a previous tournament generated.
 				if (window.confirm("Clear Current tournament")) {
 					clearCompetitors(player);
 					matchNumber(player.size);

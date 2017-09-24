@@ -19,14 +19,14 @@ export default({
 
 			{/* Player input field */}
 			<input id="playerInput" className="form-control input-field player-input offset-md-1" type="text" pattern="^[a-zA-Z]+$" maxLength="25" value={value} onChange={(e) => textChange(e.target.value)} onKeyPress={(e) => {
-				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {
+				if (e.key === "Enter" && e.target.value.length > 0 && e.target.value !== "none") {// Validates the player name is not 'none' and that the enter key had been hit.
 					playerSubmit(value, currentId);
 					increaseId(currentId);
 					clearInput("");
 				}
 			}}/>
 			<button className="btn" onClick={() => {
-				if (value.length > 0 && value !== "none") {
+				if (value.length > 0 && value !== "none") {//Checks the player name is not empty
 					playerSubmit(value, currentId);
 					increaseId(currentId);
 					clearInput("");

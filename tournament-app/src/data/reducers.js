@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {Map, fromJS} from 'immutable';
 
-import {
+import { //Imports the actions to be fed into the reducer switch statement.
 	UPDATE_TEXT,
 	UPDATE_LIST,
 	UPDATE_ID,
@@ -63,7 +63,7 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 	for (var i = 1; i < state.get("numberofrounds"); i++) {
 		let futureMatches = [];
 
-			for (var x = 1; x <= matchFrequency; x++) {
+			for (var x = 1; x <= matchFrequency; x++) { //Creates blank matches for future rounds.
 					futureMatches.push({
 						player1: "TBD",
 						player2: "TBD",
@@ -73,13 +73,13 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 					})
 					matchCounter++;
 			}
-			if (matchFrequency%2 !== 0 && matchFrequency > 1) {
+			if (matchFrequency%2 !== 0 && matchFrequency > 1) {//Updates the matchFrequency variable for the correct number of matches in the next round.
 				matchFrequency += 1
 				matchFrequency = matchFrequency/2;
 			}else {
 				matchFrequency = matchFrequency/2;
 			}
-		futureRounds.push(futureMatches);
+		futureRounds.push(futureMatches);//Adds the blank matches to the tournament data structure.
 	}
 		futureRounds.unshift(matches);//Adds the first round of populated matches to the tournament data structure.
 
@@ -91,7 +91,7 @@ const generateTournament = (state, {value, rounds}) => state.update('Tournament'
 		}]
 		)
 
-	let immutableFutureRounds = fromJS(futureRounds);
+	let immutableFutureRounds = fromJS(futureRounds); //Converts the tournament structure to an immutable object.
 
 	return Map({
 		Rounds: immutableFutureRounds,
